@@ -1,3 +1,53 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face{
+    font-family: "Lato";
+    src: url('../fonts/Lato-Light.ttf');
+    font-weight:300;
+    font-style:normal;
+}
+@font-face{
+    font-family: "Lato";
+    src: url('../fonts/Lato-Regular.ttf');
+    font-weight:400;
+    font-style:normal;
+}
+@font-face{
+    font-family: "Lato";
+    src: url('../fonts/Lato-Bold.ttf');
+    font-weight:500;
+    font-style:normal;
+}
+@font-face{
+    font-family: "Lato";
+    src: url('../fonts/Lato-Black.ttf');
+    font-weight:700;
+    font-style:normal;
+}
+
+@font-face{
+    font-family: "OpenSans";
+    src: url('../fonts/OpenSans-Light.ttf');
+    font-weight:300;
+    font-style:normal;
+}
+@font-face{
+    font-family: "OpenSans";
+    src: url('../fonts/OpenSans-Regular.ttf');
+    font-weight:400;
+    font-style:normal;
+}
+@font-face{
+    font-family: "OpenSans";
+    src: url('../fonts/OpenSans-Semibold.ttf');
+    font-weight:500;
+    font-style:normal;
+}
+@font-face{
+    font-family: "OpenSans";
+    src: url('../fonts/OpenSans-Bold.ttf');
+    font-weight:700;
+    font-style:normal;
+}
