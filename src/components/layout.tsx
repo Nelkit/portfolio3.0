@@ -7,19 +7,19 @@ interface Props{
 }
 
 const Layout = ({children}: Props) => {
-     const [showBgHeader, setShowBgHeader] = useState(false);
+    const [showBgHeader, setShowBgHeader] = useState(false);
 
-     useEffect(() => {
-        const onScroll = ():void => {
-            const {scrollY: number} = window
-
-            setShowBgHeader(scrollY>100)
-        };
-        // clean up code
+    useEffect(() => {
         window.removeEventListener('scroll', onScroll);
         window.addEventListener('scroll', onScroll, { passive: true });
         return () => window.removeEventListener('scroll', onScroll);
     }, []);
+
+    const onScroll = ():void => {
+        const {scrollY: number} = window
+
+        setShowBgHeader(scrollY>100)
+    };
 
     return (
         <>

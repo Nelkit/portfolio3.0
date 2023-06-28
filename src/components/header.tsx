@@ -1,12 +1,14 @@
 import * as React from "react"
 import logo from "../images/logo.svg"
-import LangSwitch from "./lang-switch";
+import LangSwitch from "./controls/lang-switch";
 
 interface Props {
     showBg: boolean;
 }
 const Header = ({ showBg }: Props) => {
-
+    const scrollToTop = () =>{
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
 
     return (
         <>
@@ -28,8 +30,8 @@ const Header = ({ showBg }: Props) => {
                     }
                `}>
                 <div className={'w-full max-w-5xl flex justify-between items-center'}>
-                    <a
-                        href="#"
+                    <button
+                        onClick={scrollToTop}
                         className={`
                              inline-flex 
                              transition-all
@@ -50,11 +52,10 @@ const Header = ({ showBg }: Props) => {
                                  }`
                             }
                             src={logo}
-                            alt=""
+                            alt="Logo"
                             width={100}
                         />
-                    </a>
-
+                    </button>
 
                     <LangSwitch/>
                 </div>

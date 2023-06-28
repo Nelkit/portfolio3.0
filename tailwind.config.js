@@ -17,10 +17,10 @@ module.exports = {
         'floating': 'floater 1.5s ease-out infinite',
       },
       boxShadow: {
-        'blaze': '0 0px 85px 2px rgba(0 0 0, 0.3)',
-        'blaze-sm': '0 0px 85px 2px rgba(0 0 0, 0.3)',
-        'blaze-md': '0 0px 85px 2px rgba(0 0 0, 0.3)',
-        'blaze-lg': '0 0px 85px 2px rgba(0 0 0, 0.3)',
+        'blaze': '0 0px 15px 2px rgba(0 0 0, 0.3)',
+        'blaze-sm': '0 0px 25px 2px rgba(0 0 0, 0.3)',
+        'blaze-md': '0 0px 45px 2px rgba(0 0 0, 0.3)',
+        'blaze-lg': '0 0px 65px 2px rgba(0 0 0, 0.3)',
       },
       colors: {
           'custom-blue': '#0077ff',
@@ -31,8 +31,7 @@ module.exports = {
           'custom-pink': '#ff007e',
       },
       fontFamily: {
-        lato: ['Lato', 'sans-serif'],
-        opensans: ['OpenSans', 'sans-serif'],
+        lato: ['Lato', 'sans-serif']
       }
     },
   },

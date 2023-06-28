@@ -1,11 +1,24 @@
 import * as React from "react"
-import {useState} from "react";
+import {useEffect, useState} from "react";
+import {graphql} from 'gatsby';
+import {useI18next} from 'gatsby-plugin-react-i18next';
+import { navigate } from "gatsby"
 
 const LangSwitch = () => {
     const [currentLang, setCurrentLang] = useState('en');
+    const { language, originalPath} = useI18next();
+
+    useEffect(()=>{
+        setCurrentLang(language)
+    },[])
 
     const toggleLanguage = () =>{
         setCurrentLang(currentLang == 'es' ? 'en' : 'es')
+        if (language==='en'){
+            navigate('es')
+        }else {
+            navigate(originalPath)
+        }
     }
 
     return(

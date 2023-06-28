@@ -7,15 +7,14 @@ interface Props {
 const Tag = ({children, href}: Props) => {
 
     return(
-        <a
-            href={href}
+        <span
             className={`
-                bg-custom-cyan bg-opacity-10 text-custom-cyan backdrop-blur-xl text-center py-1 px-2 rounded-md mr-2
-                hover:shadow-sm hover:shadow-custom-cyan
+                text-sm bg-custom-cyan bg-opacity-10 text-custom-cyan backdrop-blur-xl text-center py-1 px-2 rounded-md mr-2
+                transition-all duration-500 hover:shadow-md hover:bg-opacity-20 mt-2
             `}
         >
             {children}
-        </a>
+        </span>
     )
 }
 
