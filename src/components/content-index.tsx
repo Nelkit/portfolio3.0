@@ -196,7 +196,7 @@ const ContentIndex = ({data}: Props) => {
                                 project={project}
                             />
                         ))}
-                        <ViewMoreLink href={'projects'}>
+                        <ViewMoreLink href={'projects'} target={'_self'}>
                             <Trans>View More Projects</Trans>
                         </ViewMoreLink>
                     </section>
