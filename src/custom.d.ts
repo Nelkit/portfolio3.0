@@ -10,7 +10,8 @@ declare module '*.png' {
 
 type About = {
     title: string,
-    headline: string,
+    headline1: string,
+    headline2: string,
     email: string,
     description: {
         raw: string
@@ -23,18 +24,6 @@ type About = {
     }
 }
 
-type Project = {
-    node: {
-        title: string,
-        description: {
-            raw: string
-        },
-        image: {
-            url: string
-        },
-        tags: []
-    }
-}
 
 type AllContentfulObject = {
     edges: []

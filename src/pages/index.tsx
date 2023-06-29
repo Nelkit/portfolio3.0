@@ -36,7 +36,8 @@ query ($language: String!) {
     edges {
       node {
         title
-        headline
+        headline1
+        headline2
         email
         description {
           raw
@@ -53,6 +54,7 @@ query ($language: String!) {
   allContentfulExperience(
     sort: {orderNumber: ASC}
     filter: { node_locale: { eq: $language } }  
+    limit: 5
   ) {
     edges {
       node {
@@ -69,12 +71,18 @@ query ($language: String!) {
           title
         }
         hyperlink
+        links{
+          title
+          href
+          icon
+        }
       }
     }
   }
   allContentfulProject(
     sort: {orderNumber: ASC}
     filter: { node_locale: { eq: $language } }
+    limit: 4
   ) {
     edges {
       node {
@@ -88,6 +96,12 @@ query ($language: String!) {
         }
         tags {
           title
+        }
+        hyperlink
+        links{
+          title
+          href
+          icon
         }
       }
     }

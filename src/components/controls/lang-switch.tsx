@@ -6,7 +6,7 @@ import { navigate } from "gatsby"
 
 const LangSwitch = () => {
     const [currentLang, setCurrentLang] = useState('en');
-    const { language, originalPath} = useI18next();
+    const { language, originalPath, path} = useI18next();
 
     useEffect(()=>{
         setCurrentLang(language)
@@ -14,10 +14,11 @@ const LangSwitch = () => {
 
     const toggleLanguage = () =>{
         setCurrentLang(currentLang == 'es' ? 'en' : 'es')
+        console.log(path)
         if (language==='en'){
-            navigate('es')
+            navigate(`/es${path}`)
         }else {
-            navigate(originalPath)
+            navigate(`${originalPath}`)
         }
     }
 

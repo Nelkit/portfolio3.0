@@ -2,7 +2,6 @@
     "Software Engineer": "Ingeniero de Software",
     "Software": "Ingeniero de",
     "Engineer": "Software",
-    "+7 years of experience": "+7 años de experiencia",
     "Get In Touch": "Contáctame",
     "View Full Resumé": "Ver Curriculum Vitae",
     "View More Projects":"Ver Más Proyectos",
@@ -14,5 +13,9 @@
     "deployed with": "desplegado con",
     "Coded with": "Creado con",
     "by":"por",
-    "from": "desde"
+    "from": "desde",
+    "Go Back": "Ir al Inicio",
+    "Page not found": "Página no encontrada",
+    "Sorry 😔, we couldn’t find what you were looking for.": "Lo siento 😔, no hemos encontrado lo que buscabas.",
+    "Go home": "Volver al inicio"
 }

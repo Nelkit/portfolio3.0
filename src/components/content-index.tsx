@@ -10,7 +10,7 @@ import ProjectItem from "./items/project-item";
 import MenuItem from "./controls/menu-item";
 import {documentToHtmlString} from "@contentful/rich-text-html-renderer";
 import DataUtils from './../utils/data-utils';
-import Hyperlink from "./controls/hyperlink";
+import TextLink from "./controls/text-link";
 import ViewMoreLink from "./controls/view-more-link";
 
 interface Props {
@@ -88,7 +88,7 @@ const ContentIndex = ({data}: Props) => {
 
 
     const {allContentfulAbout, allContentfulExperience, allContentfulProject} = data as PageData;
-    const {title, headline,description, resumeEn, resumeEs} = dataUtils.getAboutInfo(allContentfulAbout);
+    const {title, headline2,description, resumeEn, resumeEs} = dataUtils.getAboutInfo(allContentfulAbout);
     const descriptionRaw = description !== null ? description.raw : ''
     const resumeEsUrl = resumeEs !== null && resumeEs !== undefined ? resumeEs.url : ''
     const resumeEnUrl = resumeEn !== null && resumeEn !== undefined ? resumeEn.url : ''
@@ -96,10 +96,10 @@ const ContentIndex = ({data}: Props) => {
     return(
         <div className={`snap-align-none w-full flex items-center justify-center`} style={{'background': gradient}}>
             <section className={'w-full max-w-5xl relative grid gap-1 px-4 md:px-12 lg:px-4 xl:px-0 sm:grid-cols-1 lg:grid-cols-2  '} >
-                <aside className={'text-white box-border pt-20 pb-5 lg:pb-20 lg:top-0 lg:sticky lg:flex lg:max-h-screen lg:flex-col lg:justify-between '}>
+                <aside className={'text-white box-border pt-6  md:pt-20  pb-5 lg:pb-20 lg:top-0 lg:sticky lg:flex lg:max-h-screen lg:flex-col lg:justify-between '}>
                     <div className={'flex-col justify-start relative z-10'}>
-                        <h1 className={'text-white text-5xl font-bold relative z-10'}>Nelkit Chavez</h1>
-                        <h2 className={'mt-2 text-white text-3xl font-bold relative z-10'}>
+                        <h1 className={'text-white text-5xl font-bold relative z-10 hidden md:block'}>Nelkit Chavez</h1>
+                        <h2 className={'mt-2 text-white text-3xl font-bold relative z-10 hidden md:block'}>
                             <span className={`
                                 relative 
                             `}>
@@ -107,7 +107,7 @@ const ContentIndex = ({data}: Props) => {
                             </span>
                         </h2>
                         <p className={'mt-2 text-gray-400 text-xl relative z-10'}>
-                            {headline}
+                            {headline2}
                         </p>
                         <nav className={'mt-8'}>
                             <ul className={`
@@ -196,7 +196,7 @@ const ContentIndex = ({data}: Props) => {
                                 project={project}
                             />
                         ))}
-                        <ViewMoreLink href={'#'}>
+                        <ViewMoreLink href={'projects'}>
                             <Trans>View More Projects</Trans>
                         </ViewMoreLink>
                     </section>

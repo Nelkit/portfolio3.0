@@ -2,7 +2,7 @@ import * as React from "react"
 import {MutableRefObject, useEffect, useRef, useState} from "react";
 import laptop from "../images/laptop.svg"
 import {Trans} from 'gatsby-plugin-react-i18next';
-import LinkButton from "./controls/link-button";
+import ButtonLink from "./controls/button-link";
 import {StaticImage} from "gatsby-plugin-image";
 import DataUtils from "../utils/data-utils";
 
@@ -24,6 +24,7 @@ const Hero =({data}: Props) => {
     const reactjs:string = "../images/reactjs.logo.png"
     const swift:string = "../images/swift.logo.png"
     const xcode:string = "../images/xcode.logo.png"
+    //const laptop:string = "../images/laptop.png"
 
     useEffect(() => {
         const observer: IntersectionObserver = new IntersectionObserver(
@@ -48,12 +49,12 @@ const Hero =({data}: Props) => {
         }
     }, []);
 
-    const {email} = dataUtils.getAboutInfo(allContentfulAbout);
+    const {email, headline1} = dataUtils.getAboutInfo(allContentfulAbout);
 
     return (
         <div className={'snap-align-none'} ref={containerRef}>
             <section className={`w-screen 
-                h-screen 
+                h-fit md:h-screen 
                 bg-[radial-gradient(ellipse_at_bottom,_var(--tw-gradient-stops))] 
                 ${seconds % 2 == 0 ? 'from-violet-900' : 'from-cyan-900'}
                 via-transparent to-transparent
@@ -69,12 +70,12 @@ const Hero =({data}: Props) => {
                 {/*Labels*/}
                 <div className={`
                     flex-col justify-center relative z-10 h-full 
-                    pt-[50%] md:pt-44 lg:pt-48 
-                    text-center pb-10 lg:h-fit bg-gray-900/70
+                    pt-32 md:pt-44 lg:pt-48 pb-20 md:pb-10 
+                    text-center lg:h-fit bg-gray-900/90
                     md:bg-gray-900/0 w-full
                 `}>
-                    <h1 className={'text-white text-6xl font-bold relative z-10'}>Nelkit Chavez</h1>
-                    <h2 className={'text-white text-3xl font-bold relative z-10'}>
+                    <h1 className={'text-white text-4xl md:text-6xl font-bold relative z-10'}>Nelkit Chavez</h1>
+                    <h2 className={'text-white text-2xl md:text-3xl  font-bold relative z-10'}>
                         <span className={`
                             relative 
                         `}>
@@ -97,71 +98,71 @@ const Hero =({data}: Props) => {
                             <Trans>Software Engineer</Trans>
                         </span>
                     </h2>
-                    <p className={'text-gray-400 text-xl relative z-10'}>
-                        <Trans>+7 years of experience</Trans>
+                    <p className={'text-gray-400 text-md md:text-xl  relative z-10'}>
+                        {headline1}
                     </p>
                     <div className={'mt-8'}>
-                        <LinkButton href={`mailto:${email}`}
+                        <ButtonLink href={`mailto:${email}`}
                         >
                             <Trans>Get In Touch</Trans>
-                        </LinkButton>
+                        </ButtonLink>
                     </div>
                 </div>
                 {/*Laptop Animation*/}
-                <div className={'absolute left-1/2 transform -translate-x-1/2 bottom-0 md:-bottom-10 lg:-bottom-10 '}>
+                <div className={'absolute left-1/2 transform -translate-x-1/2 -bottom-[10rem] md:-bottom-10 lg:-bottom-10 '}>
                     <div className={`
                             p-4 absolute z-10 top-0 left-0
                             flex flex-col items-start
                             h-full w-1/2 
-                           animate-floating`
-                    }>
+                            md:animate-floating
+                    `}>
                         <StaticImage className={`transition-all duration-700 w-[60px] 
                             ${ isIntersecting ? 
                                 'translate-y-2 translate-x-24' : 
-                                'translate-y-0 translate-x-20' }
+                                'translate-y-2 translate-x-24 md:translate-y-0 md:translate-x-20' }
                             `}
                              src={reactjs}
                              alt="reactjs"/>
                         <StaticImage className={`transition-all duration-700 w-[60px]
                             ${ isIntersecting ? 
                                 'translate-x-52 -translate-y-10 scale-150' : 
-                                'translate-y-0 translate-x-40 scale-1'}
+                                'translate-x-52 -translate-y-10 scale-150 md:translate-y-0 md:translate-x-40 md:scale-1'}
                             `}
                              src={python}
                              alt="python"/>
                         <StaticImage className={`transition-all duration-700 w-[60px]
                             ${ isIntersecting ? 
                                 'translate-x-10' : 
-                                'translate-x-20'}
+                                'translate-x-10 md:translate-x-20'}
                             `}
                              src={js}
                              alt="js"/>
                     </div>
-                    <img src={laptop} className={'max-w-none relative w-[512px] '}    alt="Laptop"/>
+                    <img src={laptop} className={'max-w-none relative w-[512px] invisible md:visible'}    alt="Laptop"/>
                     <div className={`
                             flex flex-col items-end
                             p-4 absolute z-10 top-0 right-0
-                            h-full w-1/2 translate-y-10 
-                            animate-floating`
-                    }>
+                            h-full w-1/2
+                            md:animate-floating
+                    `}>
                         <StaticImage className={`transition-all duration-700  w-[60px]
                             ${ isIntersecting ? 
                                 'translate-y-2 -translate-x-24' : 
-                                'translate-y-0 -translate-x-20'}
+                                'translate-y-2 -translate-x-24 md:translate-y-0 md:-translate-x-20'}
                             `}
                              src={term}
                              alt="term"/>
                         <StaticImage className={`transition-all duration-700 w-[60px] 
                             ${ isIntersecting ? 
                                 'translate-y-16 -translate-x-52 scale-125' : 
-                                'translate-y-0 -translate-x-40 scale-1'}
+                                'translate-y-16 -translate-x-52 scale-125 md:translate-y-0 md:-translate-x-40 md:scale-1'}
                             `}
                              src={swift}
                              alt="swift"/>
                         <StaticImage className={`transition-all duration-700 w-[60px]
                             ${ isIntersecting ? 
                                 '-translate-x-10 scale-125': 
-                                'translate-y-0 -translate-x-20 scale-1'}
+                                '-translate-x-10 scale-125 md:translate-y-0 md:-translate-x-20 md:scale-1'}
                             `}
                              src={xcode}
                              alt="xcode"/>

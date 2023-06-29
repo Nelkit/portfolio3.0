@@ -1,16 +1,16 @@
 import * as react from 'react'
 import * as React from "react";
-import Hyperlink from "./controls/hyperlink";
+import TextLink from "./controls/text-link";
 import {Trans} from "gatsby-plugin-react-i18next";
 const Footer = () => {
     return (
         <footer>
-            <div className={'pt-6 pb-20 mt-20'}>
+            <div className={'pt-6 pb-20 mt-20 w-full text-center'}>
                 <Trans>Built with</Trans>
-                <Hyperlink href={'https://www.gatsbyjs.com/'}> Gatsby.js</Hyperlink>,
-                <Hyperlink href={'https://react.dev/'}> React JS </Hyperlink>
+                <TextLink href={'https://www.gatsbyjs.com/'}> Gatsby.js</TextLink>,
+                <TextLink href={'https://react.dev/'}> React JS </TextLink>
                 <Trans>and</Trans>
-                <Hyperlink href={'https://tailwindcss.com/'}> Tailwind CSS</Hyperlink>
+                <TextLink href={'https://tailwindcss.com/'}> Tailwind CSS</TextLink>
                 , <Trans>deployed with</Trans>
                 <span> Vercel. </span>
                 <Trans>Coded with</Trans>

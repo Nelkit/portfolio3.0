@@ -15,6 +15,7 @@ type Project = {
             url: string
         },
         tags: [],
+        year:number,
         hyperlink: string,
         links: [],
     }
@@ -22,16 +23,17 @@ type Project = {
 interface Props {
     project: Project,
 }
-const ProjectItem = ({project}: Props ) => {
-    const {title, description, image, tags, hyperlink, id, links} = project.node
+const ProjectRow = ({project}: Props ) => {
+    const {title, description, image, tags, hyperlink, id, links, year} = project.node
     const url = image !== null && image !== undefined ? image.url : ''
     const descriptionRaw = description !== null ? description.raw : ''
 
     return (
         <a href={`${hyperlink!==null ? hyperlink : `projects/${id}`}`} >
             <article className={`
-                    group relative grid grid-cols-8 mb-4 px-5 py-6
+                    group relative grid grid-cols-10 mb-4 px-5 py-4
                     backdrop-blur-xl border-t-transparent border-t-[0.1px] 
+                    bg-gray-600 bg-opacity-10
                     hover:border-opacity-20 rounded-lg hover:border-t-gray-100 hover:bg-white hover:bg-opacity-10 
                     hover:shadow-gray-900/30  hover:shadow-sm
                     transition-all duration-300 
@@ -50,33 +52,36 @@ const ProjectItem = ({project}: Props ) => {
                 `}>
                     <ArrowUpRight />
                 </div>
-                <div className={'col-span-8 pt-0 md:pt-2 pr-0 md:pr-3 md:col-span-2'}>
+                <div className={'col-span-10 pt-2 pr-0 mb-2 md:pr-3 md:col-span-3'}>
                     <img src={url} alt="" className={'w-full rounded border-2 border-gray-600'}/>
                 </div>
-                <div className={'col-span-8 md:col-span-6'}>
-                    <h3 className={'text-lg text-white font-bold p-0 mt-3 md:mt-0'}>{title}</h3>
-                    <p
-                        className={'text-sm mb-3'}
-                        dangerouslySetInnerHTML={{__html: documentToHtmlString(JSON.parse(descriptionRaw))}}
-                    ></p>
-                    <div className={'flex w-full flex-wrap col-span-8'}>
-                        {links.map((link: any, key: number)=>(
-                            <IconLink href={link.href} icon={link.icon} key={key}>
-                                {link.title}
-                            </IconLink>
-                        ))}
+                <div className={'col-span-10 md:ml-8 md:col-span-7 flex items-center justify-center content-center h-full'}>
+                    <div>
+                        <h3 className={'text-md font-bold p-0 mt-3 md:mt-0'}>{year}</h3>
+                        <h3 className={'text-lg text-white font-bold p-0 mt-3 md:mt-0'}>{title}</h3>
+                        <p
+                            className={'text-sm mb-4 md:mb-0'}
+                            dangerouslySetInnerHTML={{__html: documentToHtmlString(JSON.parse(descriptionRaw))}}
+                        ></p>
                     </div>
-                    <div className={'flex w-full flex-wrap col-span-8'}>
-                        {tags.map((tag: any, key: number)=>(
-                            <Tag href={'#'} key={key}>
-                                {tag.title}
-                            </Tag>
-                        ))}
-                    </div>
+                </div>
+                <div className={'flex flex-wrap items-center mb-2 mt-0 md:mt-4 content-center col-span-10 md:col-span-7 lg:col-span-7'}>
+                    {tags.map((tag: any, key: number)=>(
+                        <Tag href={'#'} key={key}>
+                            {tag.title}
+                        </Tag>
+                    ))}
+                </div>
+                <div className={'flex flex-wrap items-center content-center justify-start md:justify-end col-span-10 mb-2 md:col-span-3 lg:col-span-3'}>
+                    {links.map((link: any, key: number)=>(
+                        <IconLink href={link.href} icon={link.icon} key={key}>
+                            {link.title}
+                        </IconLink>
+                    ))}
                 </div>
             </article>
         </a>
     )
 }
 
-export default ProjectItem
+export default ProjectRow

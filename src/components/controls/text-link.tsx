@@ -5,7 +5,7 @@ interface Props {
     href: string,
     target?: string
 }
-const Hyperlink = ({children, href, target='blank'}: Props) => {
+const TextLink = ({children, href, target='blank'}: Props) => {
 
     return(
         <a
@@ -20,4 +20,4 @@ const Hyperlink = ({children, href, target='blank'}: Props) => {
     )
 }
 
-export default Hyperlink
+export default TextLink

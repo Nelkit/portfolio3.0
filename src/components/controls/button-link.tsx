@@ -4,7 +4,7 @@ interface Props {
     children: any,
     href: string
 }
-const LinkButton = ({children, href}: Props) => {
+const ButtonLink = ({children, href}: Props) => {
 
     return(
         <a
@@ -23,4 +23,4 @@ const LinkButton = ({children, href}: Props) => {
     )
 }
 
-export default LinkButton
+export default ButtonLink

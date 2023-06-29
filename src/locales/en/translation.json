@@ -2,7 +2,6 @@
     "Software Engineer": "Software Engineer",
     "Software": "Software",
     "Engineer": "Engineer",
-    "+7 years of experience": "+7 years of experience",
     "Get In Touch": "Get In Touch",
     "View Full Resumé": "View Full Resumé",
     "View More Projects":"View More Projects",
@@ -14,5 +13,9 @@
     "deployed with": "deployed with",
     "Coded with": "Coded with",
     "by":"by",
-    "from": "from"
+    "from": "from",
+    "Go Back": "Go Back",
+    "Page not found": "Page not found",
+    "Sorry 😔, we couldn’t find what you were looking for.": "Sorry 😔, we couldn’t find what you were looking for.",
+    "Go home": "Go home"
 }

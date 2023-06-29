@@ -3,6 +3,7 @@ import * as React from "react";
 import ArrowUpRight from "../icons/arrow-up-right";
 import Tag from "../controls/tag";
 import {documentToHtmlString} from "@contentful/rich-text-html-renderer";
+import IconLink from "../controls/icon-link";
 
 type Experience = {
     node: {
@@ -15,7 +16,8 @@ type Experience = {
             raw: string
         },
         tags: []
-        hyperlink: string
+        hyperlink: string,
+        links: []
     }
 }
 
@@ -32,14 +34,15 @@ const ExperienceItem = ({experience}: Props ) => {
         endDate,
         description,
         tags,
-        hyperlink
+        hyperlink,
+        links
     } = experience.node
     const descriptionRaw = description !== null ? description.raw : ''
 
     return (
-        <a href={hyperlink} target="_blank" >
+        <a href={hyperlink} target="_blank" suppressHydrationWarning>
             <article className={`
-                group relative grid grid-cols-8 mb-4 px-5 py-2 backdrop-blur-xl border-t-transparent border-t-[0.1px] 
+                group relative grid grid-cols-8 mb-4 px-5 py-6 backdrop-blur-xl border-t-transparent border-t-[0.1px] 
                 hover:border-opacity-20 rounded-lg hover:border-t-gray-100 hover:bg-white hover:bg-opacity-10 
                 hover:shadow-gray-900/30  hover:shadow-sm
                 transition-all duration-300 overflow-hidden
@@ -54,6 +57,7 @@ const ExperienceItem = ({experience}: Props ) => {
                     duration-500
                     group-hover:translate-x-0
                     group-hover:translate-y-0  
+                    hidden md:block
                 `}>
                     <ArrowUpRight />
                 </div>
@@ -70,10 +74,17 @@ const ExperienceItem = ({experience}: Props ) => {
                         {company} · {employmentType}
                     </p>
                     <p
-                        className={'text-sm'}
+                        className={'text-sm mb-3'}
                         dangerouslySetInnerHTML={{__html: documentToHtmlString(JSON.parse(descriptionRaw))}}
                     ></p>
-                    <div className={'flex w-full flex-wrap col-span-8 py-4'}>
+                    <div className={'flex w-full flex-wrap col-span-8'}>
+                        {links.map((link: any, key: number)=>(
+                            <IconLink href={link.href} icon={link.icon} key={key}>
+                                {link.title}
+                            </IconLink>
+                        ))}
+                    </div>
+                    <div className={'flex w-full flex-wrap col-span-8'}>
                         {tags.map((tag: any, key: number)=>(
                             <Tag href={'#'} key={key}>
                                 {tag.title}
