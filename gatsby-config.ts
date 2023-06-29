@@ -53,6 +53,10 @@ const config: GatsbyConfig = {
             matchPath: '/:lang?/blog/:uid',
             getLanguageFromPath: true,
             excludeLanguages: ['es']
+          },
+          {
+            matchPath: '/preview',
+            languages: ['en']
           }
         ]
       }

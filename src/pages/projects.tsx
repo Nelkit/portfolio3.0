@@ -10,7 +10,7 @@ import ContentProjects from "../components/content-projects";
 
 const ProjectsPage: React.FC<PageProps> = ({data}) => {
       useEffect(()=>{
-            console.log(data)
+            //console.log(data)
       })
 
       return (

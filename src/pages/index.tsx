@@ -9,7 +9,7 @@ import {useEffect} from "react";
 
 const IndexPage: React.FC<PageProps> = ({data}) => {
       useEffect(()=>{
-            console.log(data)
+            //console.log(data)
       })
 
       return (

@@ -12,7 +12,7 @@ const Footer = () => {
                 <Trans>and</Trans>
                 <TextLink href={'https://tailwindcss.com/'}> Tailwind CSS</TextLink>
                 , <Trans>deployed with</Trans>
-                <span> Vercel. </span>
+                <span><TextLink href={'https://www.netlify.com/'}> Netlify.</TextLink> </span>
                 <Trans>Coded with</Trans>
                 <span> ❤️ </span>
                 <Trans>by </Trans>
