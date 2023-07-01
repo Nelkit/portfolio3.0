@@ -7,6 +7,7 @@ import ContentIndex from "../components/content-index";
 import {graphql} from "gatsby";
 import {useEffect} from "react";
 import ContentProjects from "../components/content-projects";
+import {SEO} from "../components/seo";
 
 const ProjectsPage: React.FC<PageProps> = ({data}) => {
       useEffect(()=>{
@@ -22,13 +23,19 @@ const ProjectsPage: React.FC<PageProps> = ({data}) => {
 
 export default ProjectsPage
 
-export const Head: HeadFC = () => (
-  <>
-    <html lang="en" />
-    <title>Nelkit Chavez | Projects</title>
-    <body className="bg-gray-900 font-lato" onScroll={this} />
-  </>
-)
+export const Head: HeadFC = () => {
+      useEffect(()=>{
+           // console.log(data)
+      })
+
+    return(
+        <>
+            <SEO title={'Nelkit Chavez | Projects'} ></SEO>
+            <body className="bg-gray-900 font-lato" />
+        </>
+    )
+}
+
 
 export const query = graphql`
 query ($language: String!) {

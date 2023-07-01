@@ -42,11 +42,17 @@ const ExperienceItem = ({experience}: Props ) => {
     return (
         <a href={hyperlink} target="_blank" suppressHydrationWarning>
             <article className={`
-                group relative grid grid-cols-8 mb-4 px-5 py-6 backdrop-blur-xl border-t-transparent border-t-[0.1px] 
-                hover:border-opacity-20 rounded-lg hover:border-t-gray-100 hover:bg-white hover:bg-opacity-10 
-                hover:shadow-gray-900/30  hover:shadow-sm
-                transition-all duration-300 overflow-hidden
-                hover:!opacity-100 group-hover/section:opacity-50
+                group transition-all duration-300 overflow-hidden
+                relative grid grid-cols-8 mb-4 px-0 py-3
+                border-t-transparent border-t-[0.1px] 
+                hover:!opacity-100  
+                md:px-5 md:py-6 md:backdrop-blur-xl  
+                md:rounded-lg md:hover:border-opacity-20
+                md:hover:border-t-gray-100  md:hover:bg-white 
+                md:hover:bg-opacity-10 
+                md:hover:shadow-gray-900/30 
+                md:hover:shadow-sm
+                md:group-hover/section:opacity-50
             `}>
                 <div className={`
                     absolute opacity-0 right-3 top-3 
@@ -67,7 +73,7 @@ const ExperienceItem = ({experience}: Props ) => {
                     </span>
                 </div>
                 <div className={'col-span-8 md:col-span-6'}>
-                    <h3 className={'text-lg text-white font-bold transition-all duration-700 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-bl group-hover:from-custom-blue group-hover:to-custom-cyan'}>
+                    <h3 className={'text-lg text-white font-bold transition-all duration-700 md:group-hover:text-transparent md:group-hover:bg-clip-text md:group-hover:bg-gradient-to-bl md:group-hover:from-custom-blue md:group-hover:to-custom-cyan'}>
                         {title}
                     </h3>
                     <p className={'text-md font-bold'}>
