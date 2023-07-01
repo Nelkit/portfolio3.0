@@ -30,12 +30,13 @@ const ProjectItem = ({project}: Props ) => {
     return (
         <a href={`${hyperlink!==null ? hyperlink : `projects/${id}`}`} >
             <article className={`
-                    group relative grid grid-cols-8 mb-4 px-5 py-6
+                    group relative grid grid-cols-8 mb-4 px-0 md:px-5 py-3 md:py-6
                     backdrop-blur-xl border-t-transparent border-t-[0.1px] 
-                    hover:border-opacity-20 rounded-lg hover:border-t-gray-100 hover:bg-white hover:bg-opacity-10 
-                    hover:shadow-gray-900/30  hover:shadow-sm
-                    transition-all duration-300 
-                    hover:!opacity-100 group-hover/section:opacity-50 
+                    rounded-lg transition-all duration-300 
+                    md:hover:border-opacity-20  md:hover:border-t-gray-100 
+                    md:hover:bg-white md:hover:bg-opacity-10 
+                    md:hover:shadow-gray-900/30  md:hover:shadow-sm
+                    md:hover:!opacity-100 md:group-hover/section:opacity-50 
             `}>
                 <div className={`
                     absolute opacity-0 right-3 top-3 

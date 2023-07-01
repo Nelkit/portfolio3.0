@@ -6,7 +6,8 @@ import Hero from '../components/hero'
 import ContentIndex from "../components/content-index";
 import {graphql} from "gatsby";
 import {useEffect} from "react";
-
+import {SEO} from "../components/seo";
+import {useTranslation} from "react-i18next";
 const IndexPage: React.FC<PageProps> = ({data}) => {
       useEffect(()=>{
             //console.log(data)
@@ -22,13 +23,15 @@ const IndexPage: React.FC<PageProps> = ({data}) => {
 
 export default IndexPage
 
-export const Head: HeadFC = () => (
-  <>
-    <html lang="en" />
-    <title>Nelkit Chavez | Software Engineer</title>
-    <body className="bg-gray-900 font-lato" onScroll={this} />
-  </>
-)
+export const Head: HeadFC = ({data}) => {
+    return(
+        <>
+            <SEO title={'Nelkit Chavez | Software Engineer'} ></SEO>
+            <body className="bg-gray-900 font-lato" onScroll={this} />
+        </>
+    )
+}
+
 
 export const query = graphql`
 query ($language: String!) {

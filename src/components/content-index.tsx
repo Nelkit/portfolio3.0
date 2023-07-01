@@ -95,7 +95,7 @@ const ContentIndex = ({data}: Props) => {
 
     return(
         <div className={`snap-align-none w-full flex items-center justify-center`} style={{'background': gradient}}>
-            <section className={'w-full max-w-5xl relative grid gap-1 px-4 md:px-12 lg:px-4 xl:px-0 sm:grid-cols-1 lg:grid-cols-2  '} >
+            <section className={'w-full max-w-5xl relative grid gap-1 px-6 md:px-12 lg:px-4 xl:px-0 sm:grid-cols-1 lg:grid-cols-2  '} >
                 <aside className={'text-white box-border pt-6  md:pt-20  pb-5 lg:pb-20 lg:top-0 lg:sticky lg:flex lg:max-h-screen lg:flex-col lg:justify-between '}>
                     <div className={'flex-col justify-start relative z-10'}>
                         <h1 className={'text-white text-5xl font-bold relative z-10 hidden md:block'}>Nelkit Chavez</h1>
@@ -161,7 +161,7 @@ const ContentIndex = ({data}: Props) => {
                     <section id={EXPERIENCE_NAME} ref={experienceRef} className={'mt-10 lg:mt-20 scroll-mt-20 group/section'}>
                         <div className={`
                             sticky lg:relative top-14 z-20 -mx-6 mb-2 w-screen bg-gray-900/0 
-                            px-6 py-2 backdrop-blur lg:sr-only 
+                            px-5 py-2 backdrop-blur lg:sr-only 
                             lg:w-full lg:h-fit lg:top-0
                             lg:px-0 lg:py-0 lg:mb-4  md:-mx-12
                         `}>
@@ -182,7 +182,7 @@ const ContentIndex = ({data}: Props) => {
                     <section id={PROJECTS_NAME} ref={projectsRef} className={'mt-10 lg:mt-20 scroll-mt-20 group/section'}>
                         <div className={`
                             sticky lg:relative top-14 z-20 -mx-6 mb-2 w-screen bg-gray-900/0 
-                            px-6 py-2 backdrop-blur lg:sr-only 
+                            px-5 py-2 backdrop-blur lg:sr-only 
                             lg:w-full lg:h-fit lg:top-0
                             lg:px-0 lg:py-0 lg:mb-4  md:-mx-12
                         `}>
