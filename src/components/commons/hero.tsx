@@ -1,10 +1,12 @@
 import * as React from "react"
 import {MutableRefObject, useEffect, useRef, useState} from "react";
-import laptop from "../images/laptop.svg"
+// @ts-ignore
+import laptop from "../../images/laptop.svg"
 import {Trans} from 'gatsby-plugin-react-i18next';
-import ButtonLink from "./controls/button-link";
 import {StaticImage} from "gatsby-plugin-image";
-import DataUtils from "../utils/data-utils";
+import DataUtils from "../../utils/data-utils";
+import ButtonLink from "../controls/button-link";
+import {PageData} from "../../custom";
 
 interface Props {
     data:PageData
@@ -18,12 +20,12 @@ const Hero =({data}: Props) => {
 
     const dataUtils: DataUtils = new  DataUtils()
 
-    const term:string = "../images/term.logo.png"
-    const python:string = "../images/python.logo.png"
-    const js:string = "../images/js.logo.png"
-    const reactjs:string = "../images/reactjs.logo.png"
-    const swift:string = "../images/swift.logo.png"
-    const xcode:string = "../images/xcode.logo.png"
+    const term:string = "../../images/term.logo.png"
+    const python:string = "../../images/python.logo.png"
+    const js:string = "../../images/js.logo.png"
+    const reactjs:string = "../../images/reactjs.logo.png"
+    const swift:string = "../../images/swift.logo.png"
+    const xcode:string = "../../images/xcode.logo.png"
     //const laptop:string = "../images/laptop.png"
 
     useEffect(() => {

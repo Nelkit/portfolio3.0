@@ -1,4 +1,5 @@
 import * as React from "react"
+// @ts-ignore
 import logo from "../images/logo.svg"
 import LangSwitch from "./controls/lang-switch";
 
@@ -24,9 +25,10 @@ const Header = ({ showBg }: Props) => {
                     border-gray-300 border-opacity-20
                     transition-all
                     duration-300
+                    backdrop-blur-lg
                     ${ showBg ?
-                        'bg-gray-800 backdrop-blur-lg border-b-[0.2px]' :
-                        'bg-transparent backdrop-blur-0 border-b-[0.0px]'
+                        'bg-gray-800 border-b-[0.2px]' :
+                        'bg-transparent border-b-[0.0px]'
                     }
                `}>
                 <div className={'w-full max-w-5xl flex justify-between items-center'}>

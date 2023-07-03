@@ -43,7 +43,7 @@ const config: GatsbyConfig = {
         localeJsonSourceName: 'locale',
         languages: ['en', 'es'],
         defaultLanguage: 'en',
-        siteUrl: `http://localhost:8000/`,
+        siteUrl: `https://nelkit.dev/`,
         i18nextOptions: {
           interpolation: {
             escapeValue: false
@@ -53,13 +53,12 @@ const config: GatsbyConfig = {
         },
         pages: [
           {
-            matchPath: '/:lang?/blog/:uid',
+            matchPath: '/:lang?/blog/:slug',
             getLanguageFromPath: true,
-            excludeLanguages: ['es']
           },
           {
-            matchPath: '/preview',
-            languages: ['en']
+            matchPath: '/:lang?/projects/:slug',
+            getLanguageFromPath: true,
           }
         ]
       }
@@ -73,8 +72,20 @@ const config: GatsbyConfig = {
     {
       resolve: 'gatsby-source-contentful',
       options: {
+        forceFullSync: true,
         spaceId: process.env.SPACE_ID,
         accessToken: process.env.ACCESS_TOKEN,
+      },
+    },
+    {
+      resolve: `gatsby-plugin-google-gtag`,
+      options: {
+        trackingIds: [
+          process.env.TRACKING_ID,
+        ],
+        pluginConfig: {
+          head: true,
+        },
       },
     },
   ]

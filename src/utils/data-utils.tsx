@@ -1,3 +1,5 @@
+import {About, AllContentfulObject} from "../custom";
+
 class DataUtils {
     getAboutInfo = (contentfulData:AllContentfulObject):About=>{
         const {edges} = contentfulData;

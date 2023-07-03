@@ -12,7 +12,7 @@ const ButtonLink = ({children, href}: Props) => {
             className={`
                 bg-white/20 backdrop-blur-sm inline-flex
                 text-white px-6 py-3
-                border-t-[0.2px] border-opacity-20 border-t-gray-100
+                border-t-[0.1px] border-t-gray-100/50
                 rounded-md transition-all duration-300
                 shadow-gray-900/30 shadow-sm
                 hover:bg-white hover:text-black

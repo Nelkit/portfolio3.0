@@ -12,10 +12,12 @@ import ContentLayout from "../components/layouts/content-layout";
 import MainLayout from "../components/layouts/main-layout";
 import {ColSpanVariant, ColVariant} from "../utils/enums";
 import {CustomPageProps} from "../custom";
+import {t} from "i18next";
+import LgBlogItem from "../components/items/lg-blog-item";
 
-const ProjectsPage: React.FC<PageProps> = (props) => {
+const BlogPage: React.FC<PageProps> = (props) => {
     const {data } = props as CustomPageProps
-    const { allContentfulProject} = data;
+    const { allContentfulBlogPost} = data;
 
       useEffect(()=>{
             //console.log(data)
@@ -36,13 +38,13 @@ const ProjectsPage: React.FC<PageProps> = (props) => {
                                 <Trans>Go Back</Trans>
                             </BackLink>
                             <h1 className={'text-2xl md:text-4xl font-bold text-white'}>
-                                <Trans>Projects</Trans>
+                                <Trans>Personal Blog</Trans>
                             </h1>
                         </div>
-                        {allContentfulProject.edges.map((project: any, index: number) =>(
-                            <LgProjectItem
+                        {allContentfulBlogPost.edges.map((post: any, index: number) =>(
+                            <LgBlogItem
                                 key={index}
-                                project={project}
+                                post={post}
                             />
                         ))}
                     </section>
@@ -53,17 +55,17 @@ const ProjectsPage: React.FC<PageProps> = (props) => {
       )
 }
 
-export default ProjectsPage
+export default BlogPage
 
 export const Head: HeadFC = (props) => {
     const {pageContext} = props as CustomPageProps
     useEffect(()=>{
            // console.log(data)
-    })
+    }, [])
 
     return(
         <>
-            <SEO title={'Nelkit Chavez | Projects'} locale={pageContext.language} ></SEO>
+            <SEO title={`Nelkit Chavez | Blog`} locale={pageContext.language}></SEO>
             <body className="bg-gray-900 font-lato" />
         </>
     )
@@ -81,8 +83,8 @@ query ($language: String!) {
       }
     }
   }
-  allContentfulProject(
-    sort: {year: DESC}
+  allContentfulBlogPost(
+    sort: {date: DESC}
     filter: { node_locale: { eq: $language } }
     limit: 1000
   ) {
@@ -91,22 +93,11 @@ query ($language: String!) {
         title
         summary
         slug
-        madeAt
         image {
           url
           title
         }
-        tags {
-          title
-        }
-        hyperlink
-        links{
-          title
-          href
-          icon
-        }
-        year
-        node_locale
+        date(locale: $language, fromNow: true)
       }
     }
   }

@@ -24,7 +24,7 @@ const ViewMoreLink = ({children, href, target='blank'}: Props) => {
             `}
         >
             {children}
-            <ArrowUpRight width={'w-3'} height={'h-3'} otherClasses={'group-hover:-translate-y-1 group-hover:translate-x-1'} />
+            <ArrowUpRight width={'w-3'} height={'h-3'} className={'group-hover:-translate-y-1 group-hover:translate-x-1'} />
         </a>
     )
 }

@@ -1,6 +1,6 @@
 import * as React from "react"
-import Header from "./header";
 import {useEffect, useRef, useState} from "react";
+import Header from "../header";
 
 interface Props{
     children:any
