@@ -1,8 +1,5 @@
 import * as React from "react";
 import ArrowUpRight from "../icons/arrow-up-right";
-import Tag from "../controls/tag";
-import {documentToHtmlString} from "@contentful/rich-text-html-renderer";
-import IconLink from "../controls/icon-link";
 import BorderedImage from "../commons/bordered-image";
 
 type BlogPost = {
@@ -11,8 +8,11 @@ type BlogPost = {
         summary: string,
         slug: string,
         image: {
-            url: string
-            title: string
+            url: string,
+            title: string,
+            resize: {
+                src: string
+            }
         },
         date: string,
     }
@@ -31,7 +31,10 @@ const MdBlogItem = ({post}: Props ) => {
     } = post.node
     const url = image !== null && image !== undefined ? image.url : ''
     const alt = image !== null && image !== undefined ? image.title : ''
-
+    let resizeImage = url
+    if (image !== null && image !== undefined){
+        resizeImage = image.resize !== null && image.resize !== undefined ? image.resize.src : url
+    }
 
     return (
         <a href={`blog/${slug}`} >
@@ -58,10 +61,10 @@ const MdBlogItem = ({post}: Props ) => {
                     <ArrowUpRight />
                 </div>
                 <div className={'col-span-8 pt-0 pr-0 md:pr-2 md:col-span-2'}>
-                    <BorderedImage src={url} alt={alt} />
+                    <BorderedImage src={resizeImage} alt={alt} />
                 </div>
                 <div className={'col-span-8 md:col-span-6 flex justify-start items-center content-center'}>
-                    <section className={'py-3 md:py-0'}>
+                    <section className={'py-3 md:py-0 w-full overflow-hidden'}>
                         <span className={'text-sm text-gray-400 font-bold m-0 p-0'}>{date}</span>
                         <h3 className={'text-lg text-white font-bold p-0 m-0'}>{title}</h3>
                         <p className={'text-sm text-gray-400 p-0 m-0 truncate'}>{summary}</p>

@@ -2,8 +2,6 @@ import * as React from "react"
 import {useEffect} from "react"
 import {graphql, HeadFC, PageProps} from "gatsby"
 import RichTextRenderer from "../components/controls/rich-text-renderer";
-import Tag from "../components/controls/tag";
-import IconLink from "../components/controls/icon-link";
 import {SEO} from "../components/seo";
 import BorderedImage from "../components/commons/bordered-image";
 import Layout from "../components/layouts/layout";
@@ -18,23 +16,22 @@ import DataUtils from "../utils/data-utils";
 import SmProjectItem from "../components/items/sm-project-item";
 import {ColSpanVariant, ColVariant} from "../utils/enums";
 import {CustomPageProps} from "../custom";
+import Prism from 'prismjs'
+import SmBlogItem from "../components/items/sm-blog-item";
 import AboutCard from "../components/commons/about-card";
-import Prism from "prismjs";
 
-const ProjectTemplate: React.FC<PageProps> = (props) => {
+const BlogTemplate: React.FC<PageProps> = (props) => {
     const { data } = props as CustomPageProps
     const dataUtils: DataUtils = new  DataUtils()
-    const {contentfulProject, allContentfulAbout, allContentfulProject} = data
+    const {contentfulBlogPost, allContentfulAbout, allContentfulBlogPost} = data
     const {
         title,
-        description,
+        body,
+        date,
         image,
         tags,
-        year,
-        links,
-        madeAt,
         relatedAssets
-    } = contentfulProject;
+    } = contentfulBlogPost;
     const url = image !== null && image !== undefined ? image.url : ''
     const {title: aboutTitle ,summary} = dataUtils.getAboutInfo(allContentfulAbout);
 
@@ -54,68 +51,62 @@ const ProjectTemplate: React.FC<PageProps> = (props) => {
                         <AboutCard title={aboutTitle} summary={summary} />
                         <div className={'w-full hidden lg:block mt-16 pr-10' }>
                             <h1 className={'text-white text-xl font-bold mb-2  '}>
-                                <Trans>More projects</Trans>
+                                <Trans>More posts</Trans>
                             </h1>
-                            {allContentfulProject.edges.map((project: any, index: number) =>(
-                                <SmProjectItem
+                            {allContentfulBlogPost.edges.map((post: any, index: number) =>(
+                                <SmBlogItem
                                     key={index}
-                                    project={project}
-                                    titleParentProject={title}
+                                    post={post}
+                                    titleParentPost={title}
                                 />
                             ))}
                         </div>
                     </div>
                 </AsideLayout>
                 <MainLayout colSpan={ColSpanVariant.COLSPAN2}>
-                    <BorderedImage src={url} />
-                    <div className={'flex flex-wrap items-center mt-2 md:mt-4 content-center col-span-10 md:col-span-7 lg:col-span-7'}>
-                        {tags.map((tag: any, key: number)=>(
-                            <Tag href={'#'} key={key}>
-                                {tag.title}
-                            </Tag>
-                        ))}
+                    <div className={'w-full px-2 md:px-0'}>
+                        <h3 className={'text-lg font-bold p-0 mt-3 md:mt-0 text-center w-full'}>
+                            {date}
+                        </h3>
+                        <h1 className={'text-3xl font-bold text-white mb-2 text-center w-full'}>
+                            {title}
+                        </h1>
+                        <div className={'-mx-6 lg:-mx-6'}>
+                            <BorderedImage src={url} isFeaturedImage={true}/>
+                        </div>
+                        <div className={'mt-3'}>
+                            {body !== null && body !== undefined &&
+                                <RichTextRenderer
+                                    contentRaw={body.raw}
+                                    references={relatedAssets}
+                                />
+                            }
+                        </div>
+                        <Footer />
                     </div>
-                    <div className={'flex w-full flex-wrap col-span-8 mt-2'}>
-                        {links.map((link: any, key: number)=>(
-                            <IconLink href={link.href} icon={link.icon} key={key}>
-                                {link.title}
-                            </IconLink>
-                        ))}
-                    </div>
-                    <div className={'mt-3'}>
-                        <h3 className={'text-lg font-bold p-0 mt-3 md:mt-0'}>{year}{madeAt && ` · ${madeAt}`}</h3>
-                        <h1 className={'text-3xl font-bold text-white mb-4'}>{title}</h1>
-                        {description !== null && description !== undefined &&
-                            <RichTextRenderer
-                                contentRaw={description.raw}
-                                references={relatedAssets}
-                            />
-                        }
-                    </div>
-                    <Footer />
                 </MainLayout>
             </ContentLayout>
         </Layout>
     )
 }
 
-export default ProjectTemplate
+export default BlogTemplate
 
 export const Head: HeadFC = (props) => {
     const {data, pageContext} = props as CustomPageProps
-    const {contentfulProject} = data
+    const {contentfulBlogPost} = data
     const {
         title,
         summary,
         image
-    } = contentfulProject;
+    } = contentfulBlogPost;
     const url = image !== null && image !== undefined ? image.url : ''
 
 
     return(
         <>
           <SEO
-              title={`Nelkit Chavez | Project: ${title}`}
+              title={`${title} | Nelkit Chavez Blog`}
               description={summary}
               image={url}
               locale={pageContext.language}
@@ -148,27 +139,19 @@ query ($language: String!, $slug: String!) {
       }
     }
   }
-  contentfulProject(
+  contentfulBlogPost(
     slug: {eq: $slug},
     node_locale: {eq: $language}
   ) {
     title
     summary
-    slug
-    description{
+    body{
       raw
     }
+    slug
     image {
-      title
       url
-    }
-    tags {
       title
-    }
-    links{
-      title
-      href
-      icon
     }
     relatedAssets {
       title
@@ -176,11 +159,10 @@ query ($language: String!, $slug: String!) {
       url
       contentful_id
     }
-    madeAt
-    year
+    date(locale: $language, fromNow: true)
   }
-  allContentfulProject(
-    sort: {orderNumber: ASC}
+  allContentfulBlogPost(
+    sort: {date: DESC}
     filter: { node_locale: { eq: $language } }
     limit: 4
   ) {
@@ -196,15 +178,7 @@ query ($language: String!, $slug: String!) {
             src
           }
         }
-        tags {
-          title
-        }
-        hyperlink
-        links{
-          title
-          href
-          icon
-        }
+        date(locale: $language, fromNow: true)
         node_locale
       }
     }

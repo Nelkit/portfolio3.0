@@ -26,6 +26,7 @@ const IndexPage: React.FC<PageProps> = (props) => {
     const [currentIntersecting, setCurrentIntersecting] = useState("");
     const { language} = useI18next();
     const dataUtils: DataUtils = new  DataUtils()
+    const showBlog:boolean = process.env.SHOW_BLOG === 'true'
 
     const aboutRef:MutableRefObject<HTMLElement> = useRef() as MutableRefObject<HTMLElement>
     const experienceRef:MutableRefObject<HTMLElement> = useRef() as MutableRefObject<HTMLElement>
@@ -46,11 +47,11 @@ const IndexPage: React.FC<PageProps> = (props) => {
     const resumeEnUrl = resumeEn !== null && resumeEn !== undefined ? resumeEn.url : ''
 
     useEffect(()=>{
-        console.log(data)
+
         const observerOptions = {
             root: null,
             rootMargin: '0px',
-            threshold: 0.8
+            threshold: 0.5
         }
         const sections:Array<MutableRefObject<HTMLElement>> = [aboutRef, experienceRef, projectsRef, blogRef]
 
@@ -96,7 +97,7 @@ const IndexPage: React.FC<PageProps> = (props) => {
             <Hero data={data as PageData} />
             <ContentLayout cols={ColVariant.COLS2}>
                 <AsideLayout colSpan={ColSpanVariant.COLSPAN1} >
-                    <div className={'flex-col justify-start relative z-10'}>
+                    <div className={'flex-col justify-start relative z-10 mb-4'}>
                         <h1 className={'text-white text-5xl font-bold relative z-10 hidden md:block'}>Nelkit Chavez</h1>
                         <h2 className={'mt-2 text-white text-3xl font-bold relative z-10 hidden md:block'}>
                             <span className={`
@@ -130,7 +131,7 @@ const IndexPage: React.FC<PageProps> = (props) => {
                                         <Trans>Projects</Trans>
                                     </MenuItem>
                                 </li>
-                                <li>
+                                <li className={`${showBlog ? '' : 'hidden'}`}>
                                     <MenuItem handleClick={() => goToSection(BLOG)} isActive={currentIntersecting===BLOG}>
                                         <Trans>Blog</Trans>
                                     </MenuItem>
@@ -186,7 +187,7 @@ const IndexPage: React.FC<PageProps> = (props) => {
                             <Trans>View More Projects</Trans>
                         </ViewMoreLink>
                     </section>
-                    <section id={BLOG} ref={blogRef} className={'mt-10 lg:mt-20 scroll-mt-20 group/section'}>
+                    <section id={BLOG} ref={blogRef} className={`${showBlog ? '' :'hidden'} mt-10 lg:mt-20 scroll-mt-20 group/section`}>
                         <div className={`
                             sticky lg:relative top-14 z-20 -mx-6 mb-2 w-screen bg-gray-900/0 
                             px-5 py-2 backdrop-blur lg:sr-only 
@@ -219,11 +220,16 @@ const IndexPage: React.FC<PageProps> = (props) => {
 export default IndexPage
 
 export const Head: HeadFC = (props) => {
-    const {pageContext} = props as CustomPageProps
+    const dataUtils: DataUtils = new  DataUtils()
+    const {pageContext, data} = props as CustomPageProps
+    const {
+        allContentfulAbout
+    } = data;
+    const {title,summary} = dataUtils.getAboutInfo(allContentfulAbout);
 
     return(
         <>
-            <SEO title={'Nelkit Chavez | Software Engineer'} locale={pageContext.language}></SEO>
+            <SEO title={`Nelkit Chavez | ${title}`} description={summary} locale={pageContext.language}></SEO>
             <body className="bg-gray-900 font-lato" onScroll={this} />
         </>
     )
@@ -236,6 +242,7 @@ query ($language: String!) {
     edges {
       node {
         title
+        summary
         headline1
         headline2
         email
@@ -292,6 +299,9 @@ query ($language: String!) {
         image {
           url
           title
+          resize(width: 800, format: JPG) {
+            src
+          }
         }
         tags {
           title
@@ -314,6 +324,9 @@ query ($language: String!) {
         image {
           url
           title
+          resize(width: 512, format: JPG) {
+            src
+          }
         }
         date(locale: $language, fromNow: true)
       }

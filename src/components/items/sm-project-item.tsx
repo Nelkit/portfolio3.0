@@ -11,8 +11,11 @@ type Project = {
         summary: string,
         slug: string,
         image: {
-            url: string
-            title: string
+            url: string,
+            title: string,
+            resize: {
+                src: string
+            }
         },
         tags: [],
         hyperlink: string,
@@ -24,7 +27,7 @@ interface Props {
     project: Project,
     titleParentProject?: string
 }
-const MdProjectItem = ({project, titleParentProject = ''}: Props ) => {
+const SmProjectItem = ({project, titleParentProject = ''}: Props ) => {
     const {
         title,
         summary,
@@ -37,6 +40,10 @@ const MdProjectItem = ({project, titleParentProject = ''}: Props ) => {
     } = project.node
     const url = image !== null && image !== undefined ? image.url : ''
     const alt = image !== null && image !== undefined ? image.title : ''
+    let resizeImage = url
+    if (image !== null && image !== undefined){
+        resizeImage = image.resize !== null && image.resize !== undefined ? image.resize.src : url
+    }
 
     if (titleParentProject === title){
         return (<></>)
@@ -67,14 +74,16 @@ const MdProjectItem = ({project, titleParentProject = ''}: Props ) => {
                     <ArrowUpRight />
                 </div>
                 <div className={'col-span-8 pt-0 pr-0 md:pr-2 md:col-span-2'}>
-                    <BorderedImage src={url} alt={alt} />
+                    <BorderedImage src={resizeImage} alt={alt} />
                 </div>
                 <div className={'col-span-8 md:col-span-6 flex justify-start items-center'}>
-                    <h3 className={'text-base text-white font-bold p-0 mt-3 md:mt-0'}>{title}</h3>
+                    <h3 className={'text-sm text-gray-400 font-bold p-0 mt-3 md:mt-0 line-clamp-2'}>
+                        {title}
+                    </h3>
                 </div>
             </article>
         </a>
     )
 }
 
-export default MdProjectItem
+export default SmProjectItem

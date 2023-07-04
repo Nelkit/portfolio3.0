@@ -20,3 +20,10 @@ export enum IndexSection {
   PROJECTS = 'projects',
   BLOG = 'blog',
 }
+
+export enum ImageBlogVariant {
+  LEFT = 'left',
+  RIGHT = 'right',
+  CENTER = 'center',
+  FULL = 'full',
+}

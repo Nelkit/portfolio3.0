@@ -15,8 +15,14 @@ const BackLink = ({children, href}: Props) => {
             className={`
                 group
                 text-md
-                font-bold text-custom-cyan hover:text-custom-cyan
+                font-bold text-custom-cyan 
                 inline-flex justify-center items-center 
+                px-3
+                py-1
+                rounded-md
+                bg-gray-500/10
+                hover:text-custom-cyan
+                hover:bg-gray-500/60
                 [&>svg]:transition-transform
                 [&>svg]:duration-300
                 [&>svg]:translate-y-0

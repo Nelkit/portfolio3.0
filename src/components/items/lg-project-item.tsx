@@ -11,7 +11,10 @@ type Project = {
         slug: string,
         image: {
             url: string,
-            title: string
+            title: string,
+            resize: {
+                src: string
+            }
         },
         tags: [],
         hyperlink: string,
@@ -39,6 +42,10 @@ const LgProjectItem = ({project}: Props ) => {
     } = project.node
     const url = image !== null && image !== undefined ? image.url : ''
     const alt = image !== null && image !== undefined ? image.title : ''
+    let resizeImage = url
+    if (image !== null && image !== undefined){
+        resizeImage = image.resize !== null && image.resize !== undefined ? image.resize.src : url
+    }
 
     return (
         <a href={`${hyperlink!==null && hyperlink!=='none' ? hyperlink : `/${node_locale==='es' ? 'es/' : ''}projects/${slug}`}`} >
@@ -64,7 +71,7 @@ const LgProjectItem = ({project}: Props ) => {
                     <ArrowUpRight />
                 </div>
                 <div className={'col-span-10 pt-2 pr-0 mb-2 md:pr-3 md:col-span-3'}>
-                    <BorderedImage src={url} alt={alt} />
+                    <BorderedImage src={resizeImage} alt={alt} />
                 </div>
                 <div className={'col-span-10 md:ml-8 md:col-span-7 flex items-center justify-center content-center h-full'}>
                     <section className={'h-fit'}>

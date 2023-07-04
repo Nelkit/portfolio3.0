@@ -32,6 +32,7 @@ type About = {
 type RelatedAssets = {
     url: string
     title: string
+    description: string
     contentful_id: string
 }
 
@@ -56,12 +57,28 @@ type ContentfulProject = {
     madeAt: string
 }
 
+type ContentfulBlogPost = {
+    title: string,
+    summary:string,
+    body: {
+        raw: string
+    }
+    image: {
+        url: string,
+        title: string
+    }
+    tags: []
+    relatedAssets: [RelatedAssets],
+    date: string
+}
+
 type PageData = {
     allContentfulAbout: AllContentfulObject
     allContentfulExperience: AllContentfulObject
     allContentfulProject: AllContentfulObject
     allContentfulBlogPost: AllContentfulObject
     contentfulProject: ContentfulProject
+    contentfulBlogPost: ContentfulBlogPost
 }
 
 type CustomPageProps = {

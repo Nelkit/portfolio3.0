@@ -12,16 +12,14 @@ import ContentLayout from "../components/layouts/content-layout";
 import MainLayout from "../components/layouts/main-layout";
 import {ColSpanVariant, ColVariant} from "../utils/enums";
 import {CustomPageProps} from "../custom";
+import DataUtils from "../utils/data-utils";
 
 const ProjectsPage: React.FC<PageProps> = (props) => {
     const {data } = props as CustomPageProps
     const { allContentfulProject} = data;
 
-      useEffect(()=>{
-            //console.log(data)
-      })
 
-      return (
+    return (
         <Layout >
             <ContentLayout cols={ColVariant.COLS1}>
                 <MainLayout colSpan={ColSpanVariant.COLSPAN1}>
@@ -35,7 +33,7 @@ const ProjectsPage: React.FC<PageProps> = (props) => {
                             <BackLink>
                                 <Trans>Go Back</Trans>
                             </BackLink>
-                            <h1 className={'text-2xl md:text-4xl font-bold text-white'}>
+                            <h1 className={'text-2xl mt-4 md:text-4xl font-bold text-white'}>
                                 <Trans>Projects</Trans>
                             </h1>
                         </div>
@@ -50,20 +48,22 @@ const ProjectsPage: React.FC<PageProps> = (props) => {
                 </MainLayout>
             </ContentLayout>
         </Layout>
-      )
+    )
 }
 
 export default ProjectsPage
 
 export const Head: HeadFC = (props) => {
-    const {pageContext} = props as CustomPageProps
-    useEffect(()=>{
-           // console.log(data)
-    })
+    const dataUtils: DataUtils = new  DataUtils()
+    const {pageContext, data} = props as CustomPageProps
+    const {
+        allContentfulAbout
+    } = data;
+    const {summary} = dataUtils.getAboutInfo(allContentfulAbout);
 
     return(
         <>
-            <SEO title={'Nelkit Chavez | Projects'} locale={pageContext.language} ></SEO>
+            <SEO title={'Nelkit Chavez | Projects'} locale={pageContext.language} description={summary} ></SEO>
             <body className="bg-gray-900 font-lato" />
         </>
     )
@@ -81,6 +81,14 @@ query ($language: String!) {
       }
     }
   }
+  allContentfulAbout(filter: { node_locale: { eq: $language } }) {
+    edges {
+      node {
+        title
+        summary
+      }
+    }
+  }
   allContentfulProject(
     sort: {year: DESC}
     filter: { node_locale: { eq: $language } }
@@ -95,6 +103,9 @@ query ($language: String!) {
         image {
           url
           title
+          resize(width: 800, format: JPG) {
+            src
+          }
         }
         tags {
           title

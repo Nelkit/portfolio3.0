@@ -1,13 +1,13 @@
 import * as React from "react";
 import ArrowUpRight from "../icons/arrow-up-right";
 import Tag from "../controls/tag";
+import {documentToHtmlString} from "@contentful/rich-text-html-renderer";
 import IconLink from "../controls/icon-link";
 import BorderedImage from "../commons/bordered-image";
 
 type BlogPost = {
     node: {
         title: string,
-        summary: string,
         slug: string,
         image: {
             url: string,
@@ -16,20 +16,18 @@ type BlogPost = {
                 src: string
             }
         },
-        date: string,
         node_locale: string
     }
 }
 interface Props {
     post: BlogPost,
+    titleParentPost?: string
 }
-const LgProjectItem = ({post}: Props ) => {
+const SmBlogItem = ({post, titleParentPost = ''}: Props ) => {
     const {
         title,
-        summary,
         slug,
         image,
-        date,
         node_locale
     } = post.node
     const url = image !== null && image !== undefined ? image.url : ''
@@ -39,14 +37,19 @@ const LgProjectItem = ({post}: Props ) => {
         resizeImage = image.resize !== null && image.resize !== undefined ? image.resize.src : url
     }
 
+    // if (titleParentPost === title){
+    //     return (<></>)
+    // }
+
     return (
-        <a href={`/${node_locale==='es' ? 'es/' : ''}blog/${slug}`} >
+        <a href={`${node_locale==='es' ? '/es/' : '/'}blog/${slug}`} >
             <article className={`
-                    group relative grid grid-cols-8 mb-4 px-5 py-4
-                    rounded-lg bg-gray-600 bg-opacity-10 transition-all 
-                    duration-300 backdrop-blur-xl border-t-transparent border-t-[0.1px] 
-                    md:hover:border-opacity-20 md:hover:border-t-gray-100 md:hover:bg-white 
-                    md:hover:bg-opacity-10 md:hover:shadow-gray-900/30  md:hover:shadow-sm
+                    group relative grid grid-cols-8 px-2 mb-0 py-2
+                    backdrop-blur-xl border-t-transparent border-t-[0.1px] 
+                    rounded-lg transition-all duration-300 
+                    md:hover:border-opacity-20  md:hover:border-t-gray-100 
+                    md:hover:bg-white md:hover:bg-opacity-10 
+                    md:hover:shadow-gray-900/30  md:hover:shadow-sm
                     md:hover:!opacity-100 md:group-hover/section:opacity-50 
             `}>
                 <div className={`
@@ -62,23 +65,17 @@ const LgProjectItem = ({post}: Props ) => {
                 `}>
                     <ArrowUpRight />
                 </div>
-                <div className={'col-span-8 md:col-span-3 pt-2 pr-0 mb-2 md:pr-3'}>
+                <div className={'col-span-8 pt-0 pr-0 md:pr-2 md:col-span-2'}>
                     <BorderedImage src={resizeImage} alt={alt} />
                 </div>
-                <div className={'col-span-8 md:col-span-5 md:ml-8  flex items-center justify-center content-center h-full'}>
-                    <div className={'w-full'}>
-                        <h3 className={'text-lg font-bold p-0 mt-3 md:mt-0'}>{date}</h3>
-                        <h2 className={'text-2xl text-white font-bold p-0 mt-0'}>{title}</h2>
-                        <p
-                            className={'text-md mb-4 md:mb-0'}
-                        >
-                            {summary}
-                        </p>
-                    </div>
+                <div className={'col-span-8 md:col-span-6 flex justify-start items-center'}>
+                    <h3 className={'text-sm text-gray-400 p-0 mt-3 md:mt-0 line-clamp-2'}>
+                        {title}
+                    </h3>
                 </div>
             </article>
         </a>
     )
 }
 
-export default LgProjectItem
+export default SmBlogItem

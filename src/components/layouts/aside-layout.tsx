@@ -22,11 +22,13 @@ const AsideLayout = ({children, colSpan = 1}: Props) => {
             text-white
             box-border 
             pb-5 
+            overflow-x-visible
             lg:pb-20 
             lg:top-0 
             lg:sticky 
             lg:flex 
             lg:max-h-screen 
+            lg:overflow-y-scroll
             lg:flex-col 
             lg:justify-between
             ${COLSPAN_MAPS[colSpan]}

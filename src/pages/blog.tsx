@@ -14,18 +14,17 @@ import {ColSpanVariant, ColVariant} from "../utils/enums";
 import {CustomPageProps} from "../custom";
 import {t} from "i18next";
 import LgBlogItem from "../components/items/lg-blog-item";
+import DataUtils from "../utils/data-utils";
 
 const BlogPage: React.FC<PageProps> = (props) => {
     const {data } = props as CustomPageProps
     const { allContentfulBlogPost} = data;
+    const showBlog:boolean = process.env.SHOW_BLOG === 'true'
 
-      useEffect(()=>{
-            //console.log(data)
-      })
-
-      return (
-        <Layout >
-            <ContentLayout cols={ColVariant.COLS1}>
+    return (
+    <Layout >
+        <ContentLayout cols={ColVariant.COLS1}>
+            {showBlog && (
                 <MainLayout colSpan={ColSpanVariant.COLSPAN1}>
                     <section className={'mt-16 lg:mt-10 scroll-mt-20 group/section'}>
                         <div className={`
@@ -37,7 +36,7 @@ const BlogPage: React.FC<PageProps> = (props) => {
                             <BackLink>
                                 <Trans>Go Back</Trans>
                             </BackLink>
-                            <h1 className={'text-2xl md:text-4xl font-bold text-white'}>
+                            <h1 className={'text-2xl mt-4 md:text-4xl font-bold text-white'}>
                                 <Trans>Personal Blog</Trans>
                             </h1>
                         </div>
@@ -50,22 +49,25 @@ const BlogPage: React.FC<PageProps> = (props) => {
                     </section>
                     <Footer />
                 </MainLayout>
-            </ContentLayout>
-        </Layout>
-      )
+            )}
+        </ContentLayout>
+    </Layout>
+    )
 }
 
 export default BlogPage
 
 export const Head: HeadFC = (props) => {
-    const {pageContext} = props as CustomPageProps
-    useEffect(()=>{
-           // console.log(data)
-    }, [])
+    const dataUtils: DataUtils = new  DataUtils()
+    const {pageContext, data} = props as CustomPageProps
+    const {
+        allContentfulAbout
+    } = data;
+    const {summary} = dataUtils.getAboutInfo(allContentfulAbout);
 
     return(
         <>
-            <SEO title={`Nelkit Chavez | Blog`} locale={pageContext.language}></SEO>
+            <SEO title={`Nelkit Chavez | Blog`} locale={pageContext.language} description={summary}></SEO>
             <body className="bg-gray-900 font-lato" />
         </>
     )
@@ -83,6 +85,14 @@ query ($language: String!) {
       }
     }
   }
+  allContentfulAbout(filter: { node_locale: { eq: $language } }) {
+    edges {
+      node {
+        title
+        summary
+      }
+    }
+  }
   allContentfulBlogPost(
     sort: {date: DESC}
     filter: { node_locale: { eq: $language } }
@@ -96,6 +106,9 @@ query ($language: String!) {
         image {
           url
           title
+          resize(width: 800, format: JPG) {
+            src
+          }
         }
         date(locale: $language, fromNow: true)
       }
