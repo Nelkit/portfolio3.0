@@ -12,16 +12,19 @@ import ContentLayout from "../components/layouts/content-layout";
 import MainLayout from "../components/layouts/main-layout";
 import {ColSpanVariant, ColVariant} from "../utils/enums";
 import {CustomPageProps} from "../custom";
+import {t} from "i18next";
+import LgBlogItem from "../components/items/lg-blog-item";
 import DataUtils from "../utils/data-utils";
 
-const ProjectsPage: React.FC<PageProps> = (props) => {
+const BlogPage: React.FC<PageProps> = (props) => {
     const {data } = props as CustomPageProps
-    const { allContentfulProject} = data;
-
+    const { allContentfulBlogPost} = data;
+    const showBlog:boolean = process.env.SHOW_BLOG === 'true'
 
     return (
-        <Layout >
-            <ContentLayout cols={ColVariant.COLS1}>
+    <Layout >
+        <ContentLayout cols={ColVariant.COLS1}>
+            {showBlog && (
                 <MainLayout colSpan={ColSpanVariant.COLSPAN1}>
                     <section className={'mt-16 lg:mt-10 scroll-mt-20 group/section'}>
                         <div className={`
@@ -34,24 +37,25 @@ const ProjectsPage: React.FC<PageProps> = (props) => {
                                 <Trans>Go Back</Trans>
                             </BackLink>
                             <h1 className={'text-2xl mt-4 md:text-4xl font-bold text-white'}>
-                                <Trans>Projects</Trans>
+                                <Trans>Personal Blog</Trans>
                             </h1>
                         </div>
-                        {allContentfulProject.edges.map((project: any, index: number) =>(
-                            <LgProjectItem
+                        {allContentfulBlogPost.edges.map((post: any, index: number) =>(
+                            <LgBlogItem
                                 key={index}
-                                project={project}
+                                post={post}
                             />
                         ))}
                     </section>
                     <Footer />
                 </MainLayout>
-            </ContentLayout>
-        </Layout>
+            )}
+        </ContentLayout>
+    </Layout>
     )
 }
 
-export default ProjectsPage
+export default BlogPage
 
 export const Head: HeadFC = (props) => {
     const dataUtils: DataUtils = new  DataUtils()
@@ -63,7 +67,7 @@ export const Head: HeadFC = (props) => {
 
     return(
         <>
-            <SEO title={'Nelkit Chavez | Projects'} locale={pageContext.language} description={summary} ></SEO>
+            <SEO title={`Nelkit Chavez | Blog`} locale={pageContext.language} description={summary}></SEO>
             <body className="bg-gray-900 font-lato" />
         </>
     )
@@ -89,8 +93,8 @@ query ($language: String!) {
       }
     }
   }
-  allContentfulProject(
-    sort: {year: DESC}
+  allContentfulBlogPost(
+    sort: {date: DESC}
     filter: { node_locale: { eq: $language } }
     limit: 1000
   ) {
@@ -99,7 +103,6 @@ query ($language: String!) {
         title
         summary
         slug
-        madeAt
         image {
           url
           title
@@ -107,17 +110,7 @@ query ($language: String!) {
             src
           }
         }
-        tags {
-          title
-        }
-        hyperlink
-        links{
-          title
-          href
-          icon
-        }
-        year
-        node_locale
+        date(locale: $language, fromNow: true)
       }
     }
   }

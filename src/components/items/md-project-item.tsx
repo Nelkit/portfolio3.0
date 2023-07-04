@@ -3,16 +3,19 @@ import ArrowUpRight from "../icons/arrow-up-right";
 import Tag from "../controls/tag";
 import {documentToHtmlString} from "@contentful/rich-text-html-renderer";
 import IconLink from "../controls/icon-link";
+import BorderedImage from "../commons/bordered-image";
 
 type Project = {
     node: {
-        id:number,
         title: string,
-        description: {
-            raw: string
-        },
+        summary: string,
+        slug: string,
         image: {
             url: string
+            title: string
+            resize: {
+                src: string
+            }
         },
         tags: [],
         hyperlink: string,
@@ -20,17 +23,30 @@ type Project = {
     }
 }
 interface Props {
-    project: Project,
+    project: Project
 }
-const ProjectItem = ({project}: Props ) => {
-    const {title, description, image, tags, hyperlink, id, links} = project.node
+const MdProjectItem = ({project}: Props ) => {
+    const {
+        title,
+        summary,
+        slug,
+        image,
+        tags,
+        hyperlink,
+        links,
+    } = project.node
     const url = image !== null && image !== undefined ? image.url : ''
-    const descriptionRaw = description !== null ? description.raw : ''
+    const alt = image !== null && image !== undefined ? image.title : ''
+    let resizeImage = url
+    if (image !== null && image !== undefined){
+        resizeImage = image.resize !== null && image.resize !== undefined ? image.resize.src : url
+    }
 
     return (
-        <a href={`${hyperlink!==null ? hyperlink : `projects/${id}`}`} >
+        <a href={`${hyperlink!==null && hyperlink!=='none' ? hyperlink : `projects/${slug}`}`} >
             <article className={`
-                    group relative grid grid-cols-8 mb-4 px-0 md:px-5 py-3 md:py-6
+                    group relative grid grid-cols-8   
+                    px-0 md:px-5 mb-4 py-3 md:py-6
                     backdrop-blur-xl border-t-transparent border-t-[0.1px] 
                     rounded-lg transition-all duration-300 
                     md:hover:border-opacity-20  md:hover:border-t-gray-100 
@@ -52,14 +68,13 @@ const ProjectItem = ({project}: Props ) => {
                     <ArrowUpRight />
                 </div>
                 <div className={'col-span-8 pt-0 md:pt-2 pr-0 md:pr-3 md:col-span-2'}>
-                    <img src={url} alt="" className={'w-full rounded border-2 border-gray-600'}/>
+                    <BorderedImage src={resizeImage} alt={alt} />
                 </div>
                 <div className={'col-span-8 md:col-span-6'}>
                     <h3 className={'text-lg text-white font-bold p-0 mt-3 md:mt-0'}>{title}</h3>
-                    <p
-                        className={'text-sm mb-3'}
-                        dangerouslySetInnerHTML={{__html: documentToHtmlString(JSON.parse(descriptionRaw))}}
-                    ></p>
+                    <p className={'text-sm mb-3'} >
+                        {summary}
+                    </p>
                     <div className={'flex w-full flex-wrap col-span-8'}>
                         {links.map((link: any, key: number)=>(
                             <IconLink href={link.href} icon={link.icon} key={key}>
@@ -80,4 +95,4 @@ const ProjectItem = ({project}: Props ) => {
     )
 }
 
-export default ProjectItem
+export default MdProjectItem

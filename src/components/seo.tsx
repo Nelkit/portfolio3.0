@@ -1,22 +1,24 @@
 import React from "react"
 import { useSiteMetadata } from "../hooks/use-site-metadata"
+// @ts-ignore
 import preview from './../images/preview.png'
 
 
 interface Props{
     title?: string,
+    image?: string,
     description?: string,
     pathname?: string,
     locale?: string,
     children?: any,
 }
-export const SEO = ({ title, description, pathname, locale, children }:Props) => {
-    const { title: defaultTitle, description: defaultDescription, image, siteUrl, twitterUsername, locale: defaultLocale } = useSiteMetadata()
+export const SEO = ({ title, image, description, pathname, locale, children }:Props) => {
+    const { title: defaultTitle, description: defaultDescription, siteUrl, twitterUsername, locale: defaultLocale } = useSiteMetadata()
 
     const seo = {
         title: title || defaultTitle,
         description: description || defaultDescription,
-        image: `${siteUrl}${preview}`,
+        image: image || `${siteUrl}${preview}`,
         url: `${siteUrl}${pathname || ``}`,
         locale: locale || defaultLocale,
         siteName: defaultTitle,

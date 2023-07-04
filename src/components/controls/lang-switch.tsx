@@ -14,7 +14,6 @@ const LangSwitch = () => {
 
     const toggleLanguage = () =>{
         setCurrentLang(currentLang == 'es' ? 'en' : 'es')
-        //console.log(path)
         if (language==='en'){
             navigate(`/es${path}`)
         }else {

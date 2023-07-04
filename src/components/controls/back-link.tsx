@@ -4,18 +4,25 @@ import {useI18next} from "gatsby-plugin-react-i18next";
 
 interface Props {
     children: any,
+    href?: string
 }
-const BackLink = ({children}: Props) => {
+const BackLink = ({children, href}: Props) => {
     const { language} = useI18next();
 
     return(
-        <a
-            href={`/${language=='en'? '' : language}`}
+        <button
+            onClick={()=>{history.back()}}
             className={`
                 group
                 text-md
-                font-bold text-custom-cyan hover:text-custom-cyan
+                font-bold text-custom-cyan 
                 inline-flex justify-center items-center 
+                px-3
+                py-1
+                rounded-md
+                bg-gray-500/10
+                hover:text-custom-cyan
+                hover:bg-gray-500/60
                 [&>svg]:transition-transform
                 [&>svg]:duration-300
                 [&>svg]:translate-y-0
@@ -23,9 +30,9 @@ const BackLink = ({children}: Props) => {
                 [&>svg]:mr-1
             `}
         >
-            <ArrowLeft width={'w-4'} height={'h-4'} otherClasses={'group-hover:-translate-x-1'} />
+            <ArrowLeft width={'w-4'} height={'h-4'} />
             {children}
-        </a>
+        </button>
     )
 }
 
