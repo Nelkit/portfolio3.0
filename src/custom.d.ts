@@ -48,7 +48,8 @@ type ContentfulProject = {
         raw: string
     }
     image: {
-        url: string
+        url: string,
+        title: string
     }
     tags: []
     links: []

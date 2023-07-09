@@ -6,12 +6,28 @@ interface Props {
     children: any,
     href?: string
 }
-const BackLink = ({children, href}: Props) => {
+const BackLink = ({children, href=''}: Props) => {
     const { language} = useI18next();
+
+    const goToBack = ()=>{
+        const {location} = window;
+        const {pathname} = location
+        let urlToRedirect:string = ''
+
+        if (pathname.includes('es')){
+            urlToRedirect = '/es/'
+        }else{
+            urlToRedirect = '/'
+        }
+
+        urlToRedirect += href
+
+        location.href = urlToRedirect
+    }
 
     return(
         <button
-            onClick={()=>{history.back()}}
+            onClick={goToBack}
             className={`
                 group
                 text-md

@@ -36,7 +36,8 @@ const ProjectTemplate: React.FC<PageProps> = (props) => {
         relatedAssets
     } = contentfulProject;
     const url = image !== null && image !== undefined ? image.url : ''
-    const {title: aboutTitle ,summary} = dataUtils.getAboutInfo(allContentfulAbout);
+    const alt = image !== null && image !== undefined ? image.title : ''
+    const {title: aboutTitle, summary} = dataUtils.getAboutInfo(allContentfulAbout);
 
 
     useEffect(()=>{
@@ -48,8 +49,8 @@ const ProjectTemplate: React.FC<PageProps> = (props) => {
             <ContentLayout cols={ColVariant.COLS3}>
                 <AsideLayout colSpan={ColSpanVariant.COLSPAN1}>
                     <div className={'mt-16 md:mt-0'}>
-                        <BackLink>
-                           <Trans>Go Back</Trans>
+                        <BackLink href={'projects/'}>
+                           <Trans>Go to Projects</Trans>
                         </BackLink>
                         <AboutCard title={aboutTitle} summary={summary} />
                         <div className={'w-full hidden lg:block mt-16 pr-10' }>
@@ -67,7 +68,7 @@ const ProjectTemplate: React.FC<PageProps> = (props) => {
                     </div>
                 </AsideLayout>
                 <MainLayout colSpan={ColSpanVariant.COLSPAN2}>
-                    <BorderedImage src={url} />
+                    <BorderedImage src={url} alt={alt} />
                     <div className={'flex flex-wrap items-center mt-2 md:mt-4 content-center col-span-10 md:col-span-7 lg:col-span-7'}>
                         {tags.map((tag: any, key: number)=>(
                             <Tag href={'#'} key={key}>

@@ -8,9 +8,10 @@ const Footer = () => {
             <div className={'pt-6 pb-20 mt-20 w-full text-center'}>
                 <Trans>Built with</Trans>
                 <TextLink href={'https://www.gatsbyjs.com/'}> Gatsby.js</TextLink>,
-                <TextLink href={'https://react.dev/'}> React JS </TextLink>
+                <TextLink href={'https://react.dev/'}> React JS </TextLink>,
+                <TextLink href={'https://tailwindcss.com/'}> Tailwind CSS </TextLink>
                 <Trans>and</Trans>
-                <TextLink href={'https://tailwindcss.com/'}> Tailwind CSS</TextLink>
+                <TextLink href={'https://www.contentful.com/'}> Contenful CMS</TextLink>
                 , <Trans>deployed with</Trans>
                 <span><TextLink href={'https://www.netlify.com/'}> Netlify.</TextLink> </span>
                 <Trans>Coded with</Trans>

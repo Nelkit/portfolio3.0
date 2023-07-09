@@ -11,6 +11,7 @@ const BorderedImage = ({src, alt, isFeaturedImage = false}: Props) => {
         <img
             src={src}
             alt={alt}
+            loading={"lazy"}
             className={`
                 w-full 
                 ${isFeaturedImage ? 'rounded-none md:rounded-md border-0 md:border-2' : 'rounded-md border-2'}

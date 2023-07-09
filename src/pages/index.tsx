@@ -147,10 +147,10 @@ const IndexPage: React.FC<PageProps> = (props) => {
                     </section>
                     <section id={EXPERIENCE} ref={experienceRef} className={'mt-10 lg:mt-20 scroll-mt-20 group/section'}>
                         <div className={`
-                            sticky lg:relative top-14 z-20 -mx-6 mb-2 w-screen bg-gray-900/0 
-                            px-5 py-2 backdrop-blur lg:sr-only 
+                            sticky lg:relative top-14 z-20 -ml-4 mb-2 w-screen bg-gray-900/0 
+                            px-4 py-2 backdrop-blur lg:sr-only 
                             lg:w-full lg:h-fit lg:top-0
-                            lg:px-0 lg:py-0 lg:mb-4  md:-mx-12
+                            lg:px-0 lg:py-0 lg:mb-4  md:-ml-8
                         `}>
                             <h3 className={'text-2xl font-bold text-white'}>
                                 <Trans>Experience</Trans>
@@ -168,10 +168,10 @@ const IndexPage: React.FC<PageProps> = (props) => {
                     </section>
                     <section id={PROJECTS} ref={projectsRef} className={'mt-10 lg:mt-20 scroll-mt-20 group/section'}>
                         <div className={`
-                            sticky lg:relative top-14 z-20 -mx-6 mb-2 w-screen bg-gray-900/0 
-                            px-5 py-2 backdrop-blur lg:sr-only 
+                            sticky lg:relative top-14 z-20 -ml-4 mb-2 w-screen bg-gray-900/0 
+                            px-4 py-2 backdrop-blur lg:sr-only 
                             lg:w-full lg:h-fit lg:top-0
-                            lg:px-0 lg:py-0 lg:mb-4  md:-mx-12
+                            lg:px-0 lg:py-0 lg:mb-4  md:-ml-8
                         `}>
                             <h3 className={'text-2xl font-bold text-white'}>
                                 <Trans>Projects</Trans>
@@ -189,10 +189,10 @@ const IndexPage: React.FC<PageProps> = (props) => {
                     </section>
                     <section id={BLOG} ref={blogRef} className={`${showBlog ? '' :'hidden'} mt-10 lg:mt-20 scroll-mt-20 group/section`}>
                         <div className={`
-                            sticky lg:relative top-14 z-20 -mx-6 mb-2 w-screen bg-gray-900/0 
-                            px-5 py-2 backdrop-blur lg:sr-only 
+                            sticky lg:relative top-14 z-20 -ml-4 mb-2 w-screen bg-gray-900/0 
+                            px-4 py-2 backdrop-blur lg:sr-only 
                             lg:w-full lg:h-fit lg:top-0
-                            lg:px-0 lg:py-0 lg:mb-4  md:-mx-12
+                            lg:px-0 lg:py-0 lg:mb-4  md:-mx-8
                         `}>
                             <h3 className={'text-2xl font-bold text-white'}>
                                 <Trans>Personal Blog</Trans>
