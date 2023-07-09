@@ -7,23 +7,27 @@
     src: url('../fonts/Lato-Light.ttf');
     font-weight:300;
     font-style:normal;
+    font-display: swap;
 }
 @font-face{
     font-family: "Lato";
     src: url('../fonts/Lato-Regular.ttf');
     font-weight:400;
     font-style:normal;
+    font-display: swap;
 }
 @font-face{
     font-family: "Lato";
     src: url('../fonts/Lato-Bold.ttf');
     font-weight:500;
     font-style:normal;
+    font-display: swap;
 }
 @font-face{
     font-family: "Lato";
     src: url('../fonts/Lato-Black.ttf');
     font-weight:700;
     font-style:normal;
+    font-display: swap;
 }
 

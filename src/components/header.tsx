@@ -8,7 +8,17 @@ interface Props {
 }
 const Header = ({ showBg }: Props) => {
     const scrollToTop = () =>{
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+        const {scrollY, scrollTo,location} = window;
+        const {pathname} = location
+        if (scrollY != 0){
+            scrollTo({ top: 0, behavior: 'smooth' });
+        }else{
+            if (pathname.includes('es')){
+                location.href = '/es/'
+            }else{
+                location.href = '/'
+            }
+        }
     }
 
     return (

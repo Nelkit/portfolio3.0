@@ -52,7 +52,7 @@ const LgProjectItem = ({project}: Props ) => {
             <article className={`
                     group relative grid grid-cols-10 mb-4 px-5 py-4
                     rounded-lg bg-gray-600 bg-opacity-10 transition-all 
-                    duration-300 backdrop-blur-xl border-t-transparent border-t-[0.1px] 
+                    duration-300 border-t-transparent border-t-[0.1px] 
                     md:hover:border-opacity-20 md:hover:border-t-gray-100 md:hover:bg-white 
                     md:hover:bg-opacity-10 md:hover:shadow-gray-900/30  md:hover:shadow-sm
                     md:hover:!opacity-100 md:group-hover/section:opacity-50 

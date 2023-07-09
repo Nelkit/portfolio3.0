@@ -25,15 +25,16 @@ const ProjectsPage: React.FC<PageProps> = (props) => {
                 <MainLayout colSpan={ColSpanVariant.COLSPAN1}>
                     <section className={'mt-16 lg:mt-10 scroll-mt-20 group/section'}>
                         <div className={`
-                                sticky lg:relative top-14 z-20 -mx-6 mb-2 w-screen bg-gray-900/0 
-                                px-5 py-2 backdrop-blur !overflow-visible lg:sr-only 
+                                sticky lg:relative top-14 z-20 -ml-4 mb-2 w-screen bg-gray-900/0 
+                                px-4 py-2 backdrop-blur !overflow-visible lg:sr-only 
                                 lg:w-full lg:h-fit lg:top-0
-                                lg:px-0 lg:py-0 lg:mb-4  md:-mx-12
+                                lg:px-0 lg:py-0 lg:mb-4  md:-ml-8
+                                flex md:flex-col items-end md:items-start justify-start
                         `}>
                             <BackLink>
                                 <Trans>Go Back</Trans>
                             </BackLink>
-                            <h1 className={'text-2xl mt-4 md:text-4xl font-bold text-white'}>
+                            <h1 className={'text-2xl ml-2 md:ml-0 mt-0 md:mt-4 md:text-4xl font-bold text-white'}>
                                 <Trans>Projects</Trans>
                             </h1>
                         </div>

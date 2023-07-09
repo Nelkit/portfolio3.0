@@ -33,6 +33,7 @@ const BlogTemplate: React.FC<PageProps> = (props) => {
         relatedAssets
     } = contentfulBlogPost;
     const url = image !== null && image !== undefined ? image.url : ''
+    const alt = image !== null && image !== undefined ? image.title : ''
     const {title: aboutTitle ,summary} = dataUtils.getAboutInfo(allContentfulAbout);
 
 
@@ -45,8 +46,8 @@ const BlogTemplate: React.FC<PageProps> = (props) => {
             <ContentLayout cols={ColVariant.COLS3}>
                 <AsideLayout colSpan={ColSpanVariant.COLSPAN1}>
                     <div className={'mt-16 md:mt-0'}>
-                        <BackLink>
-                           <Trans>Go Back</Trans>
+                        <BackLink href={'blog/'}>
+                           <Trans>Go to Blog</Trans>
                         </BackLink>
                         <AboutCard title={aboutTitle} summary={summary} />
                         <div className={'w-full hidden lg:block mt-16 pr-10' }>
@@ -72,7 +73,7 @@ const BlogTemplate: React.FC<PageProps> = (props) => {
                             {title}
                         </h1>
                         <div className={'-mx-6 lg:-mx-6'}>
-                            <BorderedImage src={url} isFeaturedImage={true}/>
+                            <BorderedImage src={url} isFeaturedImage={true} alt={alt}/>
                         </div>
                         <div className={'mt-3'}>
                             {body !== null && body !== undefined &&

@@ -14,6 +14,7 @@ interface Props {
 
 const Hero =({data}: Props) => {
     const [isIntersecting, setIsIntersecting] = useState(false);
+    const [isLoaded, setIsLoaded] = useState(false);
     const [seconds, setSeconds] = useState(0);
     const containerRef: MutableRefObject<HTMLDivElement> = useRef() as MutableRefObject<HTMLDivElement>;
     const {allContentfulAbout} = data;
@@ -39,6 +40,8 @@ const Hero =({data}: Props) => {
                 threshold: 0.90
             }
         );
+
+        setIsLoaded(true)
 
         observer.observe(containerRef.current);
 
@@ -119,28 +122,41 @@ const Hero =({data}: Props) => {
                             md:animate-floating
                     `}>
                         <StaticImage className={`transition-all duration-700 w-[60px] 
+                            ${isLoaded ? 'scale-100' : 'scale-0 blur-3xl'}
                             ${ isIntersecting ? 
                                 'translate-y-2 translate-x-24' : 
                                 'translate-y-2 translate-x-24 md:translate-y-0 md:translate-x-20' }
                             `}
+                             loading={"lazy"}
                              src={reactjs}
                              alt="reactjs"/>
                         <StaticImage className={`transition-all duration-700 w-[60px]
+                            ${isLoaded ? '' : 'scale-0 blur-3xl'}
                             ${ isIntersecting ? 
                                 'translate-x-52 -translate-y-10 scale-150' : 
                                 'translate-x-52 -translate-y-10 scale-150 md:translate-y-0 md:translate-x-40 md:scale-1'}
                             `}
+                             loading={"lazy"}
                              src={python}
                              alt="python"/>
                         <StaticImage className={`transition-all duration-700 w-[60px]
+                            ${isLoaded ? 'scale-100' : 'scale-0 blur-3xl'}
                             ${ isIntersecting ? 
                                 'translate-x-10' : 
                                 'translate-x-10 md:translate-x-20'}
                             `}
+                             loading={"lazy"}
                              src={js}
                              alt="js"/>
                     </div>
-                    <img src={laptop} className={'max-w-none relative w-[512px] invisible md:visible'}    alt="Laptop"/>
+                    <img
+                        src={laptop}
+                        className={`
+                            ${isLoaded ? 'opacity-100 blur-0' : 'opacity-0 blur-3xl'}
+                            max-w-none relative invisible md:visible
+                        `}
+                        width={512} height={449}
+                        alt="Laptop"/>
                     <div className={`
                             flex flex-col items-end
                             p-4 absolute z-10 top-0 right-0
@@ -148,24 +164,30 @@ const Hero =({data}: Props) => {
                             md:animate-floating
                     `}>
                         <StaticImage className={`transition-all duration-700  w-[60px]
+                            ${isLoaded ? 'scale-100' : 'scale-0 blur-3xl'}
                             ${ isIntersecting ? 
                                 'translate-y-2 -translate-x-24' : 
                                 'translate-y-2 -translate-x-24 md:translate-y-0 md:-translate-x-20'}
                             `}
+                             loading={"lazy"}
                              src={term}
                              alt="term"/>
                         <StaticImage className={`transition-all duration-700 w-[60px] 
+                            ${isLoaded ? 'scale-125' : 'scale-0 blur-3xl'}
                             ${ isIntersecting ? 
                                 'translate-y-16 -translate-x-52 scale-125' : 
                                 'translate-y-16 -translate-x-52 scale-125 md:translate-y-0 md:-translate-x-40 md:scale-1'}
                             `}
+                             loading={"lazy"}
                              src={swift}
                              alt="swift"/>
                         <StaticImage className={`transition-all duration-700 w-[60px]
+                            ${isLoaded ? 'scale-125' : 'scale-0 blur-3xl'}
                             ${ isIntersecting ? 
                                 '-translate-x-10 scale-125': 
                                 '-translate-x-10 scale-125 md:translate-y-0 md:-translate-x-20 md:scale-1'}
                             `}
+                             loading={"lazy"}
                              src={xcode}
                              alt="xcode"/>
                     </div>
