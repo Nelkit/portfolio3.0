@@ -66,6 +66,7 @@ const Header = ({ showBg }: Props) => {
                             src={logo}
                             alt="Logo"
                             width={100}
+                            height={40.36}
                         />
                     </button>
 

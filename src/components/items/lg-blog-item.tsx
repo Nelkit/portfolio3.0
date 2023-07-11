@@ -63,7 +63,7 @@ const LgProjectItem = ({post}: Props ) => {
                     <ArrowUpRight />
                 </div>
                 <div className={'col-span-8 md:col-span-3 pt-2 pr-0 mb-2 md:pr-3'}>
-                    <BorderedImage src={resizeImage} alt={alt} />
+                    <BorderedImage src={resizeImage} alt={alt} width={'345px'} height={'217px'}/>
                 </div>
                 <div className={'col-span-8 md:col-span-5 md:ml-8  flex items-center justify-center content-center h-full'}>
                     <div className={'w-full'}>

@@ -104,7 +104,7 @@ query ($language: String!) {
         image {
           url
           title
-          resize(width: 800, format: JPG) {
+          resize(width: 800, format: WEBP) {
             src
           }
         }

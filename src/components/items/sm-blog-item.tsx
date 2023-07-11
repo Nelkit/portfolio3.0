@@ -66,7 +66,7 @@ const SmBlogItem = ({post, titleParentPost = ''}: Props ) => {
                     <ArrowUpRight />
                 </div>
                 <div className={'col-span-8 pt-0 pr-0 md:pr-2 md:col-span-2'}>
-                    <BorderedImage src={resizeImage} alt={alt} />
+                    <BorderedImage src={resizeImage} alt={alt} width={'60px'} height={'40px'} />
                 </div>
                 <div className={'col-span-8 md:col-span-6 flex justify-start items-center'}>
                     <h3 className={'text-sm text-gray-400 p-0 mt-3 md:mt-0 line-clamp-2'}>

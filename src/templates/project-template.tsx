@@ -68,7 +68,7 @@ const ProjectTemplate: React.FC<PageProps> = (props) => {
                     </div>
                 </AsideLayout>
                 <MainLayout colSpan={ColSpanVariant.COLSPAN2}>
-                    <BorderedImage src={url} alt={alt} />
+                    <BorderedImage src={url} alt={alt} width={"660px"} height={"392px"} />
                     <div className={'flex flex-wrap items-center mt-2 md:mt-4 content-center col-span-10 md:col-span-7 lg:col-span-7'}>
                         {tags.map((tag: any, key: number)=>(
                             <Tag href={'#'} key={key}>

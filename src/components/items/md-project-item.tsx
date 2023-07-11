@@ -68,7 +68,7 @@ const MdProjectItem = ({project}: Props ) => {
                     <ArrowUpRight />
                 </div>
                 <div className={'col-span-8 pt-0 md:pt-2 pr-0 md:pr-3 md:col-span-2'}>
-                    <BorderedImage src={resizeImage} alt={alt} />
+                    <BorderedImage src={resizeImage} width={'101px'} height={'62px'}  alt={alt} />
                 </div>
                 <div className={'col-span-8 md:col-span-6'}>
                     <h3 className={'text-lg text-white font-bold p-0 mt-3 md:mt-0'}>{title}</h3>
