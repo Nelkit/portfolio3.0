@@ -61,7 +61,7 @@ const MdBlogItem = ({post}: Props ) => {
                     <ArrowUpRight />
                 </div>
                 <div className={'col-span-8 pt-0 pr-0 md:pr-2 md:col-span-2'}>
-                    <BorderedImage src={resizeImage} alt={alt} />
+                    <BorderedImage src={resizeImage} alt={alt} width={'111px'} height={'72px'} />
                 </div>
                 <div className={'col-span-8 md:col-span-6 flex justify-start items-center content-center'}>
                     <section className={'py-3 md:py-0 w-full overflow-hidden'}>

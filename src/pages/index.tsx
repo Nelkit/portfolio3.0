@@ -299,7 +299,7 @@ query ($language: String!) {
         image {
           url
           title
-          resize(width: 800, format: JPG) {
+          resize(width: 1000, format: WEBP) {
             src
           }
         }
@@ -324,7 +324,7 @@ query ($language: String!) {
         image {
           url
           title
-          resize(width: 512, format: JPG) {
+          resize(width: 512, format: WEBP) {
             src
           }
         }
