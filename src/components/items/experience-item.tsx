@@ -67,9 +67,13 @@ const ExperienceItem = ({experience}: Props ) => {
                 `}>
                     <ArrowUpRight />
                 </div>
-                <div className={'col-span-8 md:col-span-2'}>
-                    <span className={'text-sm text-gray-400 uppercase'}>
-                        {startDate} - {endDate}
+                <div className={'text-sm text-gray-400 uppercase col-span-8 md:col-span-2 flex md:flex-col'}>
+                    <span>
+                        {startDate}
+                    </span>
+                    <span className={'mx-2 '}> - </span>
+                    <span>
+                        {endDate}
                     </span>
                 </div>
                 <div className={'col-span-8 md:col-span-6'}>
