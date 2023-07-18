@@ -65,7 +65,7 @@ const LgProjectItem = ({post}: Props ) => {
                 <div className={'col-span-8 md:col-span-3 pt-2 pr-0 mb-2 md:pr-3'}>
                     <BorderedImage src={resizeImage} alt={alt} width={'345px'} height={'217px'}/>
                 </div>
-                <div className={'col-span-8 md:col-span-5 md:ml-8  flex items-center justify-center content-center h-full'}>
+                <div className={'col-span-8 md:col-span-5 md:ml-8 flex items-center justify-start content-center h-full'}>
                     <div className={'w-full'}>
                         <h3 className={'text-lg font-bold p-0 mt-3 md:mt-0'}>{date}</h3>
                         <h2 className={'text-2xl text-white font-bold p-0 mt-0'}>{title}</h2>

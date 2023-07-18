@@ -11,11 +11,10 @@ const Footer = () => {
                 <TextLink href={'https://react.dev/'}> React JS </TextLink>,
                 <TextLink href={'https://tailwindcss.com/'}> Tailwind CSS </TextLink>
                 <Trans>and</Trans>
-                <TextLink href={'https://www.contentful.com/'}> Contenful CMS</TextLink>
+                <TextLink href={'https://www.contentful.com/'}> Contentful CMS</TextLink>
                 , <Trans>deployed with</Trans>
                 <span><TextLink href={'https://www.netlify.com/'}> Netlify.</TextLink> </span>
-                <Trans>Coded with</Trans>
-                <span> ❤️ </span>
+                <Trans>Coded </Trans>
                 <Trans>by </Trans>
                 <span>Nelkit Chavez </span>
                 <Trans>from</Trans>

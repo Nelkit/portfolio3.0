@@ -73,7 +73,7 @@ const LgProjectItem = ({project}: Props ) => {
                 <div className={'col-span-10 pt-2 pr-0 mb-2 md:pr-3 md:col-span-3'}>
                     <BorderedImage src={resizeImage} alt={alt} width={'273px'} height={'164px'} />
                 </div>
-                <div className={'col-span-10 md:ml-8 md:col-span-7 flex items-center justify-center content-center h-full'}>
+                <div className={'col-span-10 md:ml-8 md:col-span-7 flex items-center justify-start content-center h-full'}>
                     <section className={'h-fit'}>
                         <h3 className={'text-md p-0 mt-3 md:mt-0'}>{year}{madeAt && ` · ${madeAt}`}</h3>
                         <h2 className={'text-xl text-white font-bold p-0 mt-3 md:mt-0'}>{title}</h2>

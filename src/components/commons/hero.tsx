@@ -121,7 +121,7 @@ const Hero =({data}: Props) => {
                             h-full w-1/2 
                             md:animate-floating
                     `}>
-                        <StaticImage className={`transition-all delay-200 duration-700 w-[60px] 
+                        <StaticImage className={`transition-all delay-100 duration-700 w-[60px] 
                             ${isLoaded ? 'scale-100' : 'scale-0 blur-3xl'}
                             ${ isIntersecting ? 
                                 'translate-y-2 translate-x-24' : 
@@ -130,7 +130,7 @@ const Hero =({data}: Props) => {
                              loading={"lazy"}
                              src={reactjs}
                              alt="reactjs"/>
-                        <StaticImage className={`transition-all delay-200 duration-700 w-[60px]
+                        <StaticImage className={`transition-all delay-100 duration-700 w-[60px]
                             ${isLoaded ? '' : 'scale-0 blur-3xl'}
                             ${ isIntersecting ? 
                                 'translate-x-52 -translate-y-10 scale-150' : 
@@ -139,7 +139,7 @@ const Hero =({data}: Props) => {
                              loading={"lazy"}
                              src={python}
                              alt="python"/>
-                        <StaticImage className={`transition-all delay-200 duration-700 w-[60px]
+                        <StaticImage className={`transition-all delay-100 duration-700 w-[60px]
                             ${isLoaded ? 'scale-100' : 'scale-0 blur-3xl'}
                             ${ isIntersecting ? 
                                 'translate-x-10' : 
@@ -153,7 +153,7 @@ const Hero =({data}: Props) => {
                         src={laptop}
                         className={`
                             ${isLoaded ? 'opacity-100 scale-100' : 'opacity-0 scale-0'}
-                            max-w-none transition-all duration-300 relative invisible md:visible
+                            max-w-none transition-all duration-100 relative invisible md:visible
                         `}
                         width={512} height={449}
                         alt="Laptop"/>
@@ -163,7 +163,7 @@ const Hero =({data}: Props) => {
                             h-full w-1/2
                             md:animate-floating
                     `}>
-                        <StaticImage className={`transition-all delay-200 duration-700  w-[60px]
+                        <StaticImage className={`transition-all delay-100 duration-700  w-[60px]
                             ${isLoaded ? 'scale-100' : 'scale-0 blur-3xl'}
                             ${ isIntersecting ? 
                                 'translate-y-2 -translate-x-24' : 
@@ -172,7 +172,7 @@ const Hero =({data}: Props) => {
                              loading={"lazy"}
                              src={term}
                              alt="term"/>
-                        <StaticImage className={`transition-all delay-200 duration-700 w-[60px] 
+                        <StaticImage className={`transition-all delay-100 duration-700 w-[60px] 
                             ${isLoaded ? 'scale-125' : 'scale-0 blur-3xl'}
                             ${ isIntersecting ? 
                                 'translate-y-16 -translate-x-52 scale-125' : 
@@ -181,7 +181,7 @@ const Hero =({data}: Props) => {
                              loading={"lazy"}
                              src={swift}
                              alt="swift"/>
-                        <StaticImage className={`transition-all delay-200 duration-700 w-[60px]
+                        <StaticImage className={`transition-all delay-100 duration-700 w-[60px]
                             ${isLoaded ? 'scale-125' : 'scale-0 blur-3xl'}
                             ${ isIntersecting ? 
                                 '-translate-x-10 scale-125': 
